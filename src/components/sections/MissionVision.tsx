@@ -1,6 +1,7 @@
 import { Compass, Target } from "lucide-react";
 
 import Container from "@/components/Container";
+import Icon, { type IconKey } from "@/components/Icon";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { coreValues, mission, vision } from "@/lib/site";
@@ -37,17 +38,17 @@ export default function MissionVision() {
           ))}
         </div>
 
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {coreValues.map((value, i) => (
             <Reveal key={value.name} delay={i * 80}>
               <article className="h-full border border-peak-950/12 bg-white p-7 transition-colors duration-300 hover:border-gold-400">
-                <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-gold-ink">
-                  Core value
+                <span className="flex size-11 items-center justify-center rounded-full bg-peak-900 text-gold-400">
+                  <Icon name={value.icon as IconKey} className="size-5" />
                 </span>
-                <h3 className="mt-3 text-xl font-bold text-peak-950">
+                <h3 className="mt-5 text-xl font-bold text-peak-950">
                   {value.name}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-peak-950/70">
+                <p className="mt-2.5 text-sm leading-relaxed text-peak-950/70">
                   {value.description}
                 </p>
               </article>

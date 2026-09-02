@@ -96,18 +96,36 @@ export const mission =
 export const vision =
   "To become a leading logistics provider in Liberia and beyond, recognized for transforming logistics operations through innovation, efficiency, and excellence in service delivery.";
 
+/**
+ * The profile names three values — Excellence, Integrity, Reliability — with a
+ * one-line gloss each. The reference build the client supplied adds Community
+ * and expands all four, and the client asked for that version. The expanded
+ * wording keeps each profile definition's meaning rather than replacing it.
+ */
 export const coreValues = [
   {
-    name: "Excellence",
-    description: "Delivering high-quality services consistently.",
-  },
-  {
     name: "Integrity",
-    description: "Operating with transparency and professionalism.",
+    description:
+      "We handle every shipment, and every client relationship, honestly — no hidden fees, no surprises.",
+    icon: "ShieldCheck",
   },
   {
     name: "Reliability",
-    description: "Ensuring dependable and timely service delivery.",
+    description:
+      "Deadlines in logistics aren't suggestions. We build in the buffers and backup plans that keep your cargo moving on schedule.",
+    icon: "Clock",
+  },
+  {
+    name: "Excellence",
+    description:
+      "From paperwork accuracy to warehouse handling, we hold our own standard higher than the minimum the job requires.",
+    icon: "TrendingUp",
+  },
+  {
+    name: "Community",
+    description:
+      "We're based here, and we measure our success by how well Liberian traders are working — not just our bottom line.",
+    icon: "Users",
   },
 ] as const;
 
