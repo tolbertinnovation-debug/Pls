@@ -5,13 +5,13 @@ import Container from "@/components/Container";
 import PageHero from "@/components/PageHero";
 import QuoteForm from "@/components/QuoteForm";
 import Reveal from "@/components/Reveal";
-import { company, services } from "@/lib/site";
+import { absolute, company, services } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Request a Quote",
   description:
     "Tell us about your shipment and Peak Logistics Services will prepare a logistics solution — freight forwarding, customs clearing, documentation, warehousing and delivery across Liberia.",
-  alternates: { canonical: "/quote" },
+  alternates: { canonical: absolute("/quote/") },
 };
 
 export default function QuotePage() {

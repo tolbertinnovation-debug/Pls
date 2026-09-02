@@ -4,6 +4,7 @@ import { ArrowRight, Plane, Ship, Truck, TrainFront } from "lucide-react";
 import Container from "@/components/Container";
 import Reveal from "@/components/Reveal";
 import { ButtonLink } from "@/components/Button";
+import { asset } from "@/lib/site";
 
 const MODES = [
   { name: "Air", Icon: Plane },
@@ -91,7 +92,7 @@ export default function Hero() {
               />
               <div className="relative overflow-hidden shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)]">
                 <Image
-                  src="/images/port-monrovia.jpg"
+                  src={asset("/images/port-monrovia.jpg")}
                   alt="A container ship, gantry crane and cargo truck at a container terminal at sunrise"
                   width={1148}
                   height={942}

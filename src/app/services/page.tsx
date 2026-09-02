@@ -8,13 +8,13 @@ import Icon, { type IconKey } from "@/components/Icon";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import HowWeHelp from "@/components/sections/HowWeHelp";
-import { services } from "@/lib/site";
+import { absolute, services } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
     "Freight forwarding, customs brokerage, documentation services, supply chain management, specialized logistics and transportation services across Liberia.",
-  alternates: { canonical: "/services" },
+  alternates: { canonical: absolute("/services/") },
 };
 
 export default function ServicesPage() {

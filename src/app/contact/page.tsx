@@ -8,13 +8,13 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { ButtonLink } from "@/components/Button";
 import { LogoImage } from "@/components/Logo";
-import { company } from "@/lib/site";
+import { absolute, company } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
     "Contact Peak Logistics Services in Monrovia, Liberia — call +231 886 826 289, email peaklogisticsservices@gmail.com, or visit us opposite the Freeport of Monrovia on Bushrod Island.",
-  alternates: { canonical: "/contact" },
+  alternates: { canonical: absolute("/contact/") },
 };
 
 const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(

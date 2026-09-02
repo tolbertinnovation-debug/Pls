@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { company } from "@/lib/site";
+import { asset, company } from "@/lib/site";
 
 type LogoProps = {
-  /** "horizontal" for bars, "mark" for tight spaces, "stacked" for hero/footer. */
-  variant?: "horizontal" | "mark" | "stacked";
+  /** "horizontal" for bars, "mark" for tight spaces. */
+  variant?: "horizontal" | "mark";
   /**
    * Knockout colorway for dark green backgrounds: the illustration is
    * untouched, the wordmark is reversed out in white.
@@ -16,16 +16,21 @@ type LogoProps = {
   priority?: boolean;
 };
 
+/**
+ * Image optimization is off for the static export, so these files are stored at
+ * roughly twice their largest rendered size — no more, no less.
+ *
+ * `next/image` only prefixes basePath through its optimizer, which is disabled
+ * here, so every src goes through `asset()` explicitly.
+ */
 const ASSETS = {
   dark: {
-    horizontal: { src: "/brand/logo-horizontal.png", w: 1279, h: 280 },
-    mark: { src: "/brand/logo-mark.png", w: 910, h: 425 },
-    stacked: { src: "/brand/logo-full.png", w: 942, h: 720 },
+    horizontal: { src: asset("/brand/logo-horizontal.webp"), w: 548, h: 120 },
+    mark: { src: asset("/brand/logo-mark.webp"), w: 278, h: 130 },
   },
   light: {
-    horizontal: { src: "/brand/logo-horizontal-light.png", w: 1279, h: 280 },
-    mark: { src: "/brand/logo-mark.png", w: 910, h: 425 },
-    stacked: { src: "/brand/logo-full-light.png", w: 760, h: 609 },
+    horizontal: { src: asset("/brand/logo-horizontal-light.webp"), w: 548, h: 120 },
+    mark: { src: asset("/brand/logo-mark.webp"), w: 278, h: 130 },
   },
 } as const;
 

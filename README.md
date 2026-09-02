@@ -19,11 +19,18 @@ No other runtime dependencies.
 
 ```bash
 npm install
-npm run dev     # http://localhost:3000
-npm run build   # production build
-npm start       # serve the production build
+npm run dev     # http://localhost:3000/Pls/
+npm run build   # static export into ./out
 npm run lint
 ```
+
+The site is built as a **static export** (`output: "export"`), because it is
+hosted on GitHub Pages, which serves files and cannot run a Node server. The
+build writes plain HTML into `out/`.
+
+`NEXT_PUBLIC_SITE_URL` carries the deployment subpath (`/Pls`), so the dev
+server serves from `/Pls/` too. To drop the prefix locally, put
+`NEXT_PUBLIC_SITE_URL=http://localhost:3000` in a `.env.local` file.
 
 ## Project structure
 
@@ -38,7 +45,6 @@ src/
     why-peak/               strategic advantage
     contact/                contact details
     quote/                  request a quote
-    api/quote/route.ts      quote submission endpoint
     sitemap.ts robots.ts manifest.ts
   components/
     Header, Footer, PageHero, CTABand, QuoteForm, ServiceCard, …
@@ -70,18 +76,20 @@ Two related notes:
 
 ## The quote form
 
-`/quote` validates on the client and again on the server using the same rules in
-`src/lib/quote.ts`, so the API can never accept a submission the form would have
-rejected.
+`/quote` validates every important field in the browser (`src/lib/quote.ts`)
+before anything is sent.
 
-**Email delivery is not configured by default, and the form does not pretend
-otherwise.** With no provider set, `POST /api/quote` returns `not_configured` and
-the form shows the visitor a clear notice plus two working alternatives: a
-prefilled email containing everything they typed, and the office phone number.
+A static site has no server of its own, so there is nothing here to receive a
+form post — **and the form does not pretend otherwise.** With no endpoint
+configured it tells the visitor plainly that nothing was transmitted, then
+offers two working alternatives: a prefilled email containing everything they
+typed, and the office phone number.
 
-To turn on delivery, set `RESEND_API_KEY` (see `.env.example`). To use a
-different provider, replace the `sendEmail` function in
-`src/app/api/quote/route.ts` — nothing else needs to change.
+To accept submissions online, set `NEXT_PUBLIC_QUOTE_ENDPOINT` to any URL that
+accepts a JSON POST — Formspree, Web3Forms, a Google Apps Script — as a
+repository variable of that name. The browser then posts straight to it. If the
+site later moves to a Node host (Vercel, a VPS), a server route can be added
+back and pointed at the same shared validation.
 
 ## Brand assets
 
@@ -90,19 +98,41 @@ and flyer:
 
 | File | Notes |
 | --- | --- |
-| `logo-horizontal.png` | Mark + wordmark lockup, used in the header |
-| `logo-full.png` | Stacked lockup |
-| `logo-mark.png` | Illustration only |
-| `logo-*-light.png` | Knockout colorway for dark green backgrounds — the illustration is untouched, the wordmark is reversed out in white |
+| `logo-horizontal.webp` | Mark + wordmark lockup, used in the header |
+| `logo-mark.webp` | Illustration only |
+| `logo-*-light.webp` | Knockout colorway for dark green backgrounds — the illustration is untouched, the wordmark is reversed out in white |
 | `og-image.jpg` | Social card, from the supplied brand banner |
 | `icon-192/512.png`, `favicon-32.png` | App icons |
 | `images/port-monrovia.jpg`, `images/containers.jpg` | Photography from the supplied marketing material |
 
 The logo itself has not been redesigned.
 
-## Before going live
+Because a static export has no image optimizer, these files are stored at
+roughly twice the size they are actually rendered at, rather than at full
+resolution. `next/image` only applies the base path through that optimizer, so
+every image `src` goes through the `asset()` helper in `src/lib/site.ts`.
 
-1. Set `NEXT_PUBLIC_SITE_URL` to the real domain — it drives canonical URLs,
-   Open Graph tags, `sitemap.xml` and `robots.txt`.
-2. Configure quote-form email delivery, or leave the honest fallback in place.
-3. Add social media URLs to `site.ts` if the accounts are public.
+## Deployment
+
+`.github/workflows/deploy.yml` builds the export and publishes it to GitHub
+Pages on every push to `main`.
+
+**One-time setup:** in the repository, go to **Settings → Pages** and set
+**Source** to **GitHub Actions**. Until that is changed, Pages runs its default
+branch-based Jekyll build, which publishes the README instead of the site.
+
+The deployed URL is `https://tolbertinnovation-debug.github.io/Pls/`.
+
+### Moving to a custom domain
+
+1. Add the domain under **Settings → Pages**.
+2. Change `NEXT_PUBLIC_SITE_URL` in `.github/workflows/deploy.yml` to
+   `https://peaklogisticsservices.com` — the base path becomes empty
+   automatically, and canonical URLs, Open Graph tags, the sitemap and
+   `robots.txt` all follow.
+
+## Also worth doing
+
+- Set `NEXT_PUBLIC_QUOTE_ENDPOINT` as a repository variable to accept quote
+  requests online, or leave the honest email fallback in place.
+- Add social media URLs to `site.ts` if the accounts are public.

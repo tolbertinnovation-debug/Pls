@@ -1,4 +1,4 @@
-import { company, services, siteUrl } from "@/lib/site";
+import { absolute, company, services, siteUrl } from "@/lib/site";
 
 /**
  * schema.org LocalBusiness markup. Only fields backed by the company profile
@@ -14,8 +14,8 @@ export default function StructuredData() {
     description:
       "Peak Logistics Services provides freight forwarding, customs brokerage, documentation, transportation and supply chain solutions across Liberia.",
     url: siteUrl,
-    logo: `${siteUrl}/brand/logo-full.png`,
-    image: `${siteUrl}/brand/og-image.jpg`,
+    logo: absolute("/brand/icon-512.png"),
+    image: absolute("/brand/og-image.jpg"),
     telephone: company.phone.display,
     email: company.email.display,
     address: {
@@ -36,7 +36,7 @@ export default function StructuredData() {
           "@type": "Service",
           name: service.title,
           description: service.summary,
-          url: `${siteUrl}/services/${service.slug}`,
+          url: absolute(`/services/${service.slug}/`),
         },
       })),
     },

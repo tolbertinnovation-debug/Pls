@@ -58,29 +58,38 @@ export default function QuoteForm() {
       return;
     }
 
+    // The site is a static export, so it has no server of its own. When a form
+    // endpoint is configured the browser posts straight to it; when none is,
+    // the visitor is handed a prefilled email rather than told it was sent.
+    const endpoint = process.env.NEXT_PUBLIC_QUOTE_ENDPOINT;
+
+    if (!endpoint) {
+      setStatus("manual");
+      summaryRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+      return;
+    }
+
     setStatus("submitting");
     setServerMessage("");
 
     try {
-      const response = await fetch("/api/quote", {
+      const response = await fetch(endpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          ...values,
+          _subject: `Quote request — ${values.service} — ${values.fullName}`,
+        }),
       });
-      const data = await response.json().catch(() => ({}));
 
-      if (response.ok && data.status === "sent") {
+      if (response.ok) {
         setStatus("sent");
-      } else if (response.status === 422 && data.errors) {
-        setErrors(data.errors as QuoteErrors);
-        setStatus("idle");
-      } else if (data.status === "not_configured") {
-        setStatus("manual");
       } else {
         setServerMessage(
-          typeof data.message === "string"
-            ? data.message
-            : "Something went wrong. Please email or call us instead.",
+          "We could not send your request just now. Please email or call us instead.",
         );
         setStatus("error");
       }

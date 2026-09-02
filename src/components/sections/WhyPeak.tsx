@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 import Icon, { type IconKey } from "@/components/Icon";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import { strategicAdvantages } from "@/lib/site";
+import { asset, strategicAdvantages } from "@/lib/site";
 
 export default function WhyPeak() {
   return (
@@ -25,7 +25,7 @@ export default function WhyPeak() {
               />
               <figure className="relative m-0 overflow-hidden">
                 <Image
-                  src="/images/containers.jpg"
+                  src={asset("/images/containers.jpg")}
                   alt="Stacked shipping containers awaiting onward transport"
                   width={562}
                   height={660}

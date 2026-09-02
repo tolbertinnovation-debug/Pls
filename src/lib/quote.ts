@@ -36,8 +36,9 @@ export const serviceOptions = services.map((s) => s.title);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 /**
- * Shared by the browser form and the API route so a request can never be
- * accepted by the server under rules the form did not apply.
+ * Validates a quote request in the browser before it is sent anywhere.
+ * Kept separate from the form so the same rules can be reused if the site
+ * ever gains a server-side endpoint of its own.
  */
 export function validateQuote(values: Partial<QuoteRequest>): QuoteErrors {
   const errors: QuoteErrors = {};
@@ -85,7 +86,7 @@ export function validateQuote(values: Partial<QuoteRequest>): QuoteErrors {
   return errors;
 }
 
-/** Plain-text rendering used for the email body and the mailto fallback. */
+/** Plain-text rendering used for the prefilled email. */
 export function formatQuoteText(v: QuoteRequest): string {
   const rows: [string, string][] = [
     ["Name", v.fullName],

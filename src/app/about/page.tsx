@@ -8,13 +8,13 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import MissionVision from "@/components/sections/MissionVision";
 import WhoWeServe from "@/components/sections/WhoWeServe";
-import { company } from "@/lib/site";
+import { absolute, asset, company } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
     "Peak Logistics Services is a full-service logistics company delivering efficient, reliable and client-focused solutions across Liberia by air, sea, road and rail.",
-  alternates: { canonical: "/about" },
+  alternates: { canonical: absolute("/about/") },
 };
 
 export default function AboutPage() {
@@ -64,7 +64,7 @@ export default function AboutPage() {
                   className="absolute -bottom-4 -right-4 hidden h-full w-full border border-gold-500/50 sm:block"
                 />
                 <Image
-                  src="/images/port-monrovia.jpg"
+                  src={asset("/images/port-monrovia.jpg")}
                   alt="Cargo being handled at a container terminal — ship, gantry crane and haulage truck"
                   width={1148}
                   height={942}

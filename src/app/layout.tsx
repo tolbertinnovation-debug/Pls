@@ -3,7 +3,7 @@ import { Inter, Manrope } from "next/font/google";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { company, siteUrl } from "@/lib/site";
+import { absolute, asset, company, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   authors: [{ name: company.name }],
   creator: company.name,
   publisher: company.name,
-  alternates: { canonical: "/" },
+  alternates: { canonical: absolute("/") },
   openGraph: {
     type: "website",
     locale: "en_LR",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
       "Freight forwarding, customs brokerage, documentation, transportation and supply chain solutions across Liberia.",
     images: [
       {
-        url: "/brand/og-image.jpg",
+        url: absolute("/brand/og-image.jpg"),
         width: 1200,
         height: 630,
         alt: "Peak Logistics Services — transportation and logistics in Liberia",
@@ -68,16 +68,16 @@ export const metadata: Metadata = {
       "Peak Logistics Services | Reliable Logistics Solutions in Liberia",
     description:
       "Freight forwarding, customs brokerage, documentation, transportation and supply chain solutions across Liberia.",
-    images: ["/brand/og-image.jpg"],
+    images: [absolute("/brand/og-image.jpg")],
   },
   icons: {
     icon: [
-      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/brand/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: asset("/brand/favicon-32.png"), sizes: "32x32", type: "image/png" },
+      { url: asset("/brand/icon-192.png"), sizes: "192x192", type: "image/png" },
     ],
-    apple: [{ url: "/brand/icon-192.png", sizes: "192x192" }],
+    apple: [{ url: asset("/brand/icon-192.png"), sizes: "192x192" }],
   },
-  manifest: "/manifest.webmanifest",
+  manifest: asset("/manifest.webmanifest"),
   robots: { index: true, follow: true },
 };
 

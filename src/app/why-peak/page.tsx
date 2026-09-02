@@ -8,13 +8,13 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import HowWeHelp from "@/components/sections/HowWeHelp";
 import LiberiaFocus from "@/components/sections/LiberiaFocus";
-import { coreValues, strategicAdvantages } from "@/lib/site";
+import { absolute, coreValues, strategicAdvantages } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Why Peak",
   description:
     "A one-stop logistics provider with deep understanding of Liberia's logistics landscape, customs expertise, integrated multi-modal solutions and efficient handling of complex operations.",
-  alternates: { canonical: "/why-peak" },
+  alternates: { canonical: absolute("/why-peak/") },
 };
 
 export default function WhyPeakPage() {

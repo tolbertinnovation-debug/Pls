@@ -9,7 +9,13 @@ import Icon, { type IconKey } from "@/components/Icon";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import { ButtonLink } from "@/components/Button";
-import { company, howWeHelp, serviceBySlug, services, siteUrl } from "@/lib/site";
+import {
+  absolute,
+  company,
+  howWeHelp,
+  serviceBySlug,
+  services,
+} from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -29,18 +35,18 @@ export async function generateMetadata({
   return {
     title: service.metaTitle,
     description: service.metaDescription,
-    alternates: { canonical: `/services/${service.slug}` },
+    alternates: { canonical: absolute(`/services/${service.slug}/`) },
     openGraph: {
       type: "website",
       siteName: company.name,
       title: `${service.metaTitle} | ${company.name}`,
       description: service.metaDescription,
-      url: `${siteUrl}/services/${service.slug}`,
+      url: absolute(`/services/${service.slug}/`),
       // Defining openGraph here replaces the layout's object wholesale, so the
       // shared card image has to be restated.
       images: [
         {
-          url: "/brand/og-image.jpg",
+          url: absolute("/brand/og-image.jpg"),
           width: 1200,
           height: 630,
           alt: `${company.name} — ${service.title}`,

@@ -42,12 +42,30 @@ export const company = {
 } as const;
 
 /**
- * Canonical origin, used for metadata, sitemap and robots.
- * Override at build time with NEXT_PUBLIC_SITE_URL once the real domain is live.
+ * Canonical site URL, including any subpath the site is served from.
+ *
+ * The default is the GitHub Pages address. Point NEXT_PUBLIC_SITE_URL at a
+ * custom domain (e.g. https://peaklogisticsservices.com) and both the base
+ * path and every absolute URL below follow automatically — `next.config.ts`
+ * derives `basePath` from this same value.
  */
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://peaklogisticsservices.com"
-).replace(/\/$/, "");
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://tolbertinnovation-debug.github.io/Pls"
+).replace(/\/+$/, "");
+
+/** Subpath the site is served from: "/Pls" on GitHub Pages, "" on a domain. */
+export const basePath = new URL(siteUrl).pathname.replace(/\/$/, "");
+
+/**
+ * Root-relative URL for a file in /public, including the base path.
+ * Use for anything the browser fetches that `next/link` and `next/image`
+ * do not already prefix themselves (favicons, the manifest).
+ */
+export const asset = (path: string) => `${basePath}${path}`;
+
+/** Absolute URL, for metadata and structured data consumers. */
+export const absolute = (path: string) => `${siteUrl}${path}`;
 
 /* ------------------------------------------------------------------ */
 /* Mission, vision, values — quoted exactly from the company profile.  */
