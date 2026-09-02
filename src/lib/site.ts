@@ -1,0 +1,361 @@
+/**
+ * Single source of truth for company information.
+ *
+ * Every fact below is taken verbatim (or lightly re-flowed) from the supplied
+ * Peak Logistics Services company profile. Nothing here is invented — no
+ * history, statistics, client names, certifications, awards or coordinates.
+ */
+
+export const company = {
+  name: "Peak Logistics Services",
+  shortName: "Peak Logistics",
+  tagline: "Your Cargo, Our Commitment. Reaching New Heights in Liberia.",
+  descriptor:
+    "A full-service logistics company committed to delivering efficient, reliable and client-focused solutions across Liberia.",
+  phone: {
+    display: "+231 886 826 289",
+    href: "tel:+231886826289",
+  },
+  email: {
+    display: "peaklogisticsservices@gmail.com",
+    href: "mailto:peaklogisticsservices@gmail.com",
+  },
+  /**
+   * Only the handle is published in the profile — no social URLs were
+   * supplied, so none are fabricated here.
+   */
+  socialHandle: "@peaklogisticsservices",
+  address: {
+    lines: [
+      "Opposite Freeport of Monrovia",
+      "Behind CONEX Gas Station",
+      "Bushrod Island",
+      "Monrovia, Liberia",
+    ],
+    /** Single-line form for schema.org and map search links. */
+    oneLine:
+      "Opposite Freeport of Monrovia, Behind CONEX Gas Station, Bushrod Island, Monrovia, Liberia",
+    locality: "Monrovia",
+    region: "Montserrado County",
+    country: "Liberia",
+  },
+} as const;
+
+/**
+ * Canonical site URL, including any subpath the site is served from.
+ *
+ * The default is the GitHub Pages address. Point NEXT_PUBLIC_SITE_URL at a
+ * custom domain (e.g. https://peaklogisticsservices.com) and both the base
+ * path and every absolute URL below follow automatically — `next.config.ts`
+ * derives `basePath` from this same value.
+ */
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://tolbertinnovation-debug.github.io/Pls"
+).replace(/\/+$/, "");
+
+/** Subpath the site is served from: "/Pls" on GitHub Pages, "" on a domain. */
+export const basePath = new URL(siteUrl).pathname.replace(/\/$/, "");
+
+/**
+ * Root-relative URL for a file in /public, including the base path.
+ * Use for anything the browser fetches that `next/link` and `next/image`
+ * do not already prefix themselves (favicons, the manifest).
+ */
+export const asset = (path: string) => `${basePath}${path}`;
+
+/** Absolute URL, for metadata and structured data consumers. */
+export const absolute = (path: string) => `${siteUrl}${path}`;
+
+/* ------------------------------------------------------------------ */
+/* Mission, vision, values — quoted exactly from the company profile.  */
+/* ------------------------------------------------------------------ */
+
+export const mission =
+  "To ensure the smooth, efficient, and timely transportation of goods and services, delivering consistent value and reliability to our clients.";
+
+export const vision =
+  "To become a leading logistics provider in Liberia and beyond, recognized for transforming logistics operations through innovation, efficiency, and excellence in service delivery.";
+
+export const coreValues = [
+  {
+    name: "Excellence",
+    description: "Delivering high-quality services consistently.",
+  },
+  {
+    name: "Integrity",
+    description: "Operating with transparency and professionalism.",
+  },
+  {
+    name: "Reliability",
+    description: "Ensuring dependable and timely service delivery.",
+  },
+] as const;
+
+/* ------------------------------------------------------------------ */
+/* Services                                                            */
+/* ------------------------------------------------------------------ */
+
+export type IconName =
+  | "Ship"
+  | "FileCheck"
+  | "FileText"
+  | "Network"
+  | "Warehouse"
+  | "Truck";
+
+export type Service = {
+  slug: string;
+  number: string;
+  title: string;
+  /** Short line used on cards and in the nav dropdown. */
+  summary: string;
+  /** Longer lead paragraph for the service detail page. */
+  intro: string;
+  /** Capability bullets, taken from the profile. */
+  capabilities: string[];
+  icon: IconName;
+  metaTitle: string;
+  metaDescription: string;
+};
+
+export const services: Service[] = [
+  {
+    slug: "freight-forwarding",
+    number: "01",
+    title: "Freight Forwarding",
+    summary:
+      "Air, sea, road and rail transportation with route optimization, carrier coordination and shipment tracking.",
+    intro:
+      "We move cargo through air, sea, road and rail, coordinating carriers and optimizing routes so your shipment travels the most practical path from origin to destination.",
+    capabilities: [
+      "Air, sea, road and rail transportation",
+      "Route optimization and carrier coordination",
+      "Shipment tracking and global shipping support",
+    ],
+    icon: "Ship",
+    metaTitle: "Freight Forwarding in Liberia",
+    metaDescription:
+      "Air, sea, road and rail freight forwarding from Peak Logistics Services — route optimization, carrier coordination, shipment tracking and global shipping support across Liberia.",
+  },
+  {
+    slug: "customs-brokerage",
+    number: "02",
+    title: "Customs Brokerage",
+    summary:
+      "Import and export documentation, duty and tax processing, and regulatory compliance.",
+    intro:
+      "Customs clearance is where shipments most often stall. We prepare and file import and export documentation, process duties and taxes, and keep every consignment compliant with local and international requirements.",
+    capabilities: [
+      "Import and export documentation",
+      "Duty and tax processing",
+      "Regulatory compliance with local and international laws",
+    ],
+    icon: "FileCheck",
+    metaTitle: "Customs Brokerage & Clearing in Liberia",
+    metaDescription:
+      "Customs brokerage and clearing services in Liberia — import and export documentation, duty and tax processing, and compliance with local and international regulations.",
+  },
+  {
+    slug: "documentation-services",
+    number: "03",
+    title: "Documentation Services",
+    summary:
+      "Shipping documents including invoices, bills of lading, certificates of origin and packing lists.",
+    intro:
+      "Accurate paperwork keeps cargo moving. We prepare and manage the full shipping document set, end to end, so nothing is missing when your cargo reaches a checkpoint.",
+    capabilities: [
+      "Preparation of shipping documents — invoices, bills of lading, certificates of origin, packing lists and more",
+      "End-to-end documentation management",
+    ],
+    icon: "FileText",
+    metaTitle: "Shipping Documentation Services in Liberia",
+    metaDescription:
+      "End-to-end shipping documentation from Peak Logistics Services — invoices, bills of lading, certificates of origin and packing lists prepared and managed for you.",
+  },
+  {
+    slug: "supply-chain-management",
+    number: "04",
+    title: "Supply Chain Management",
+    summary:
+      "Logistics planning and advisory, inventory control, warehousing and distribution.",
+    intro:
+      "We plan and coordinate the wider supply chain around your cargo — advising on logistics strategy, controlling inventory, and arranging warehousing and onward distribution.",
+    capabilities: [
+      "Logistics planning and advisory",
+      "Inventory control and coordination",
+      "Warehousing and distribution solutions",
+    ],
+    icon: "Network",
+    metaTitle: "Supply Chain Management in Liberia",
+    metaDescription:
+      "Supply chain management in Liberia — logistics planning and advisory, inventory control and coordination, plus warehousing and distribution solutions.",
+  },
+  {
+    slug: "specialized-logistics",
+    number: "05",
+    title: "Specialized Logistics",
+    summary:
+      "Bonded warehousing, cross-trade operations and last-mile delivery solutions.",
+    intro:
+      "Some consignments need arrangements beyond a standard shipment. We handle bonded warehousing, cross-trade movements and last-mile delivery for cargo with specific requirements.",
+    capabilities: [
+      "Bonded warehousing",
+      "Cross-trade operations",
+      "Last-mile delivery solutions",
+    ],
+    icon: "Warehouse",
+    metaTitle: "Specialized Logistics Services in Liberia",
+    metaDescription:
+      "Specialized logistics from Peak Logistics Services — bonded warehousing, cross-trade operations and last-mile delivery solutions in Liberia.",
+  },
+  {
+    slug: "transportation-services",
+    number: "06",
+    title: "Transportation Services",
+    summary:
+      "Reliable, flexible cargo delivery and customized transport solutions built around your needs.",
+    intro:
+      "We provide dependable cargo transport and build the delivery arrangement around what your business actually requires, rather than a fixed template.",
+    capabilities: [
+      "Reliable and flexible cargo delivery",
+      "Customized transport solutions based on client needs",
+    ],
+    icon: "Truck",
+    metaTitle: "Transportation Services in Liberia",
+    metaDescription:
+      "Reliable and flexible cargo transportation across Liberia, with customized transport solutions built around each client's needs.",
+  },
+];
+
+export const serviceBySlug = (slug: string) =>
+  services.find((s) => s.slug === slug);
+
+/* ------------------------------------------------------------------ */
+/* Strategic advantage, target market, transport modes                 */
+/* ------------------------------------------------------------------ */
+
+export const strategicAdvantages = [
+  {
+    title: "Deep understanding of Liberia's logistics landscape",
+    description:
+      "Local market knowledge applied to every stage of the journey, from port to final delivery.",
+    icon: "MapPin",
+  },
+  {
+    title: "Expertise in navigating customs procedures",
+    description:
+      "Clearance handled by people who know the documentation and compliance requirements.",
+    icon: "Stamp",
+  },
+  {
+    title: "Integrated solutions across multiple transport modes",
+    description:
+      "Air, sea, road and rail coordinated together rather than managed as separate hand-offs.",
+    icon: "Layers",
+  },
+  {
+    title: "Efficient handling of complex logistics operations",
+    description:
+      "Multi-leg, multi-party shipments kept moving with a single point of accountability.",
+    icon: "Workflow",
+  },
+] as const;
+
+export const targetMarket = [
+  {
+    title: "Startups and growing enterprises",
+    description:
+      "Support for businesses building out their first import and distribution routes.",
+    icon: "Sprout",
+  },
+  {
+    title: "Established companies",
+    description:
+      "Consistent, repeatable logistics for organisations moving cargo at volume.",
+    icon: "Building2",
+  },
+  {
+    title: "Importers and exporters",
+    description:
+      "Freight, clearance and documentation handled together on both legs of trade.",
+    icon: "ArrowLeftRight",
+  },
+  {
+    title: "NGOs and international organizations",
+    description:
+      "Compliance-led handling for programme cargo arriving into Liberia.",
+    icon: "Globe2",
+  },
+] as const;
+
+export const transportModes = [
+  { name: "Air", icon: "Plane" },
+  { name: "Sea", icon: "Ship" },
+  { name: "Road", icon: "Truck" },
+  { name: "Rail", icon: "TrainFront" },
+] as const;
+
+/**
+ * An illustration of how an engagement typically runs — presented as
+ * "How We Help", not as a formally documented company procedure, because
+ * the company profile does not define one.
+ */
+export const howWeHelp = [
+  {
+    step: "01",
+    title: "Consultation",
+    description:
+      "We start by understanding your cargo, your timelines and where the shipment needs to go.",
+  },
+  {
+    step: "02",
+    title: "Logistics Planning",
+    description:
+      "We map the route and mode — air, sea, road or rail — and coordinate the carriers involved.",
+  },
+  {
+    step: "03",
+    title: "Documentation & Coordination",
+    description:
+      "Shipping documents are prepared and customs requirements are addressed ahead of arrival.",
+  },
+  {
+    step: "04",
+    title: "Transportation & Handling",
+    description:
+      "Cargo moves under coordination, with warehousing arranged where the shipment calls for it.",
+  },
+  {
+    step: "05",
+    title: "Delivery",
+    description:
+      "The consignment is completed through to final delivery at its destination.",
+  },
+] as const;
+
+/* ------------------------------------------------------------------ */
+/* Navigation                                                          */
+/* ------------------------------------------------------------------ */
+
+export type NavItem = {
+  label: string;
+  href: string;
+  children?: { label: string; href: string; summary: string }[];
+};
+
+export const navigation: NavItem[] = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  {
+    label: "Services",
+    href: "/services",
+    children: services.map((s) => ({
+      label: s.title,
+      href: `/services/${s.slug}`,
+      summary: s.summary,
+    })),
+  },
+  { label: "Why Peak", href: "/why-peak" },
+  { label: "Contact", href: "/contact" },
+];

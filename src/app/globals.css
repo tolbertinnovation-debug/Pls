@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Peak Logistics Services — design tokens
+   Palette derived from the supplied logo: deep forest green + gold.
+   ========================================================================== */
+@theme {
+  --color-peak-50: #eefaf3;
+  --color-peak-100: #d5f2e2;
+  --color-peak-200: #ade4c7;
+  --color-peak-300: #74cea3;
+  --color-peak-400: #34b96e;
+  --color-peak-500: #189a55;
+  --color-peak-600: #0f7643;
+  --color-peak-700: #0a5c36;
+  --color-peak-800: #06462a;
+  --color-peak-900: #05341f;
+  --color-peak-950: #032013;
+
+  --color-gold-100: #fdf1c9;
+  --color-gold-200: #fbe49a;
+  --color-gold-300: #f8d968;
+  --color-gold-400: #f4c531;
+  --color-gold-500: #e3ab08;
+  --color-gold-600: #c89000;
+  --color-gold-700: #a87400;
+  /* Darkened gold for small text and icons on light backgrounds: 5.6:1 on
+     white, where gold-400/500/600 all fall short of WCAG AA. */
+  --color-gold-ink: #8a6000;
+
+  --color-stone-canvas: #f6f7f5;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: var(--color-peak-950);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Guards against any single element forcing a horizontal scrollbar. */
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-400);
+    color: var(--color-peak-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-400);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Thin gold rule used above section eyebrows. */
+  .rule-gold {
+    background-image: linear-gradient(
+      to right,
+      var(--color-gold-400),
+      var(--color-gold-600)
+    );
+  }
+
+  /* Very subtle grain so the large dark green fields do not band. */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Scroll reveal — opt-in via <Reveal>. Elements are visible by default so
+   the page still renders correctly without JS or with reduced motion on.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* Scoped to .js so that without JavaScript the content is simply visible. */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s var(--ease-out-expo),
+      transform 0.7s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .js [data-reveal="shown"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
