@@ -1,10 +1,9 @@
-import Image from "next/image";
 import { ArrowRight, Plane, Ship, Truck, TrainFront } from "lucide-react";
 
 import Container from "@/components/Container";
+import HeroVideo from "@/components/HeroVideo";
 import Reveal from "@/components/Reveal";
 import { ButtonLink } from "@/components/Button";
-import { asset } from "@/lib/site";
 
 const MODES = [
   { name: "Air", Icon: Plane },
@@ -15,104 +14,71 @@ const MODES = [
 
 export default function Hero() {
   return (
-    <section className="grain relative isolate overflow-hidden bg-peak-950 pt-28 lg:pt-32">
-      {/* Depth: a warm gold bloom behind the image column, a green wash left. */}
+    <section className="relative isolate flex min-h-[38rem] flex-col overflow-hidden bg-peak-950 pt-28 lg:min-h-[42rem] lg:pt-32">
+      <HeroVideo />
+
+      {/*
+        Scrim. The footage is bright gold, so the copy needs a dark ground to
+        sit on: a flat wash everywhere (heavier on mobile, where the text runs
+        the full width), a left-weighted gradient on wider screens where the
+        text column is, and a fade into the section colour at the bottom.
+      */}
+      <div aria-hidden className="absolute inset-0 -z-10 bg-peak-950/62 lg:bg-peak-950/42" />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(80%_60%_at_78%_18%,rgba(228,171,8,0.16),transparent_62%),radial-gradient(70%_70%_at_8%_92%,rgba(15,118,67,0.28),transparent_60%)]"
+        className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-peak-950/90 via-peak-950/60 to-transparent lg:block"
       />
-      {/* Faint route-grid motif echoing the globe in the logo. */}
-      <svg
+      <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 -top-24 -z-10 h-[38rem] w-[38rem] text-gold-400/[0.07]"
-        viewBox="0 0 400 400"
-        fill="none"
-      >
-        <circle cx="200" cy="200" r="199" stroke="currentColor" />
-        <circle cx="200" cy="200" r="150" stroke="currentColor" />
-        <circle cx="200" cy="200" r="100" stroke="currentColor" />
-        <ellipse cx="200" cy="200" rx="199" ry="70" stroke="currentColor" />
-        <ellipse cx="200" cy="200" rx="199" ry="140" stroke="currentColor" />
-        <path d="M200 1v398M1 200h398" stroke="currentColor" />
-      </svg>
+        className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-peak-950 via-peak-950/70 to-transparent"
+      />
 
-      <Container className="relative">
-        <div className="grid items-center gap-12 pb-14 pt-10 lg:grid-cols-12 lg:gap-10 lg:pb-20 lg:pt-16">
-          {/* ------------------------------ copy ------------------------------ */}
-          <div className="lg:col-span-7">
-            <Reveal className="flex items-center gap-3">
-              <span className="h-px w-10 rule-gold" />
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-400">
-                Logistics &amp; Transportation · Monrovia, Liberia
-              </p>
-            </Reveal>
+      <Container className="relative flex flex-1 items-center">
+        <div className="max-w-2xl py-16 lg:py-24">
+          <Reveal className="flex items-center gap-3">
+            <span className="h-px w-10 rule-gold" />
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-400">
+              Logistics &amp; Transportation · Monrovia, Liberia
+            </p>
+          </Reveal>
 
-            <Reveal delay={80}>
-              <h1 className="mt-6 text-[2.375rem] font-extrabold leading-[0.98] text-white min-[400px]:text-[2.75rem] sm:text-6xl lg:text-[4.25rem]">
-                Your Cargo.
-                <span className="block text-gold-400">Our Commitment.</span>
-              </h1>
-            </Reveal>
+          <Reveal delay={80}>
+            <h1 className="mt-6 text-[2.375rem] font-extrabold leading-[0.98] text-white drop-shadow-[0_2px_24px_rgba(3,32,19,0.55)] min-[400px]:text-[2.75rem] sm:text-6xl lg:text-[4.25rem]">
+              Your Cargo.
+              <span className="block text-gold-400">Our Commitment.</span>
+            </h1>
+          </Reveal>
 
-            <Reveal delay={160}>
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/75">
-                Reliable, efficient and client-focused logistics solutions
-                across Liberia.
-              </p>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-white/55">
-                From freight forwarding and customs clearance to warehousing,
-                transportation and final delivery, we help keep your cargo
-                moving.
-              </p>
-            </Reveal>
+          <Reveal delay={160}>
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/85">
+              Reliable, efficient and client-focused logistics solutions across
+              Liberia.
+            </p>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70">
+              From freight forwarding and customs clearance to warehousing,
+              transportation and final delivery, we help keep your cargo moving.
+            </p>
+          </Reveal>
 
-            <Reveal delay={240}>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <ButtonLink href="/quote" variant="gold" size="lg">
-                  Request a Quote
-                  <ArrowRight
-                    aria-hidden
-                    className="size-4 transition-transform duration-200 group-hover:translate-x-1"
-                  />
-                </ButtonLink>
-                <ButtonLink href="/services" variant="outlineLight" size="lg">
-                  Explore Our Services
-                </ButtonLink>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* ------------------------------ image ------------------------------ */}
-          <Reveal delay={200} className="lg:col-span-5">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Offset gold frame. */}
-              <div
-                aria-hidden
-                className="absolute -bottom-4 -right-4 hidden h-full w-full border border-gold-400/40 sm:block"
-              />
-              <div className="relative overflow-hidden shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)]">
-                <Image
-                  src={asset("/images/port-monrovia.jpg")}
-                  alt="A container ship, gantry crane and cargo truck at a container terminal at sunrise"
-                  width={1148}
-                  height={942}
-                  priority
-                  sizes="(max-width: 1023px) 88vw, 40vw"
-                  className="h-[22rem] w-full object-cover sm:h-[26rem] lg:h-[32rem]"
-                />
-                <div
+          <Reveal delay={240}>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <ButtonLink href="/quote" variant="gold" size="lg">
+                Request a Quote
+                <ArrowRight
                   aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-peak-950/55 via-transparent to-transparent"
+                  className="size-4 transition-transform duration-200 group-hover:translate-x-1"
                 />
-                <div aria-hidden className="absolute inset-x-0 bottom-0 h-1 rule-gold" />
-              </div>
+              </ButtonLink>
+              <ButtonLink href="/services" variant="outlineLight" size="lg">
+                Explore Our Services
+              </ButtonLink>
             </div>
           </Reveal>
         </div>
       </Container>
 
       {/* -------------------------- transport modes -------------------------- */}
-      <div className="relative border-t border-white/10 bg-peak-950/40">
+      <div className="relative border-t border-white/15 bg-peak-950/70 backdrop-blur-sm">
         <Container>
           <ul className="grid grid-cols-2 divide-x divide-y divide-white/10 sm:grid-cols-4 sm:divide-y-0">
             {MODES.map(({ name, Icon }) => (
