@@ -1,4 +1,6 @@
 import Hero from "@/components/sections/Hero";
+import StatsBand from "@/components/sections/StatsBand";
+import Gallery from "@/components/sections/Gallery";
 import Intro from "@/components/sections/Intro";
 import ServicesGrid from "@/components/sections/ServicesGrid";
 import WhyPeak from "@/components/sections/WhyPeak";
@@ -14,12 +16,15 @@ export default function HomePage() {
     <>
       <StructuredData />
       <Hero />
+      <StatsBand label="Peak Logistics in numbers" />
       <Intro />
       <ServicesGrid />
       <WhyPeak />
+      <StatsBand set="performance" label="Delivery performance" />
       <MissionVision />
       <WhoWeServe />
       <HowWeHelp />
+      <Gallery />
       <LiberiaFocus />
       <CTABand />
     </>

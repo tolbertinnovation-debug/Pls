@@ -354,6 +354,71 @@ export const howWeHelp = [
 ] as const;
 
 /* ------------------------------------------------------------------ */
+/* Company figures                                                     */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Performance figures, confirmed by the client on 2 Sep 2026 as accurate.
+ *
+ * These are NOT in the written company profile — they were transcribed from a
+ * reference build the client supplied and then confirmed. Keep them here, in
+ * one place, so a correction is a single edit rather than a hunt through JSX.
+ */
+export const headlineStats = [
+  { value: "500+", label: "Shipments Delivered" },
+  { value: "200+", label: "Satisfied Clients" },
+  { value: "24/7", label: "Customer Support" },
+  { value: "10+", label: "Years of Experience" },
+] as const;
+
+export const performanceStats = [
+  { value: "98%", label: "On-Time Delivery Rate" },
+  { value: "15", label: "Countries Reached" },
+  { value: "3", label: "Major Ports Served" },
+  { value: "40+", label: "Team Members" },
+] as const;
+
+/* ------------------------------------------------------------------ */
+/* Gallery                                                             */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Stills from footage supplied by the client of containerised cargo under way.
+ * Captions describe the cargo, not ownership: Peak Logistics is a freight
+ * forwarder, so nothing here claims the vessel is theirs.
+ */
+export const gallery = [
+  {
+    src: "/images/fleet-deck.jpg",
+    width: 719,
+    height: 466,
+    alt: "Container ship deck and crane at sunrise, seen from on board",
+    caption: "Sea freight under way",
+  },
+  {
+    src: "/images/fleet-containers.jpg",
+    width: 720,
+    height: 547,
+    alt: "Stacked shipping containers secured on a vessel's deck",
+    caption: "Containerised cargo secured on deck",
+  },
+  {
+    src: "/images/fleet-cosco.jpg",
+    width: 640,
+    height: 640,
+    alt: "Close view of shipping containers stacked several high",
+    caption: "Consolidated container stacks",
+  },
+  {
+    src: "/images/fleet-wake.jpg",
+    width: 640,
+    height: 472,
+    alt: "A vessel's wake alongside the hull while under way",
+    caption: "Cargo in transit",
+  },
+] as const;
+
+/* ------------------------------------------------------------------ */
 /* Navigation                                                          */
 /* ------------------------------------------------------------------ */
 

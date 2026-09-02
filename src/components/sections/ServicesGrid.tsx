@@ -16,8 +16,8 @@ export default function ServicesGrid({
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="What we do"
-            title="Six services, one accountable partner"
-            lead="Everything your cargo needs between origin and destination — coordinated by a single team."
+            title="Services Built for Liberian Trade"
+            lead="From the moment your cargo leaves origin to the moment it reaches your warehouse door, Peak Logistics manages every handoff in between."
           />
           {showCta && (
             <Reveal delay={100} className="shrink-0">
