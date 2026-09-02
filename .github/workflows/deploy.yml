@@ -39,8 +39,9 @@ jobs:
           # robots. Change it here (and in Pages settings) if a custom domain
           # is added later.
           NEXT_PUBLIC_SITE_URL: https://tolbertinnovation-debug.github.io/Pls
-          # Optional: a form endpoint the browser can POST to. Without it the
-          # quote form hands the visitor a prefilled email instead.
+          # Optional override for the quote-form relay. Left unset, the form
+          # posts to FormSubmit, which emails submissions to the address in
+          # src/lib/site.ts.
           NEXT_PUBLIC_QUOTE_ENDPOINT: ${{ vars.NEXT_PUBLIC_QUOTE_ENDPOINT }}
         run: npm run build
 

@@ -12,8 +12,7 @@ import { absolute, company } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Contact Peak Logistics Services in Monrovia, Liberia — call +231 886 826 289, email peaklogisticsservices@gmail.com, or visit us opposite the Freeport of Monrovia on Bushrod Island.",
+  description: `Contact Peak Logistics Services in Monrovia, Liberia — call ${company.phone.display}, email ${company.email.display}, or visit us opposite the Freeport of Monrovia on Bushrod Island.`,
   alternates: { canonical: absolute("/contact/") },
 };
 

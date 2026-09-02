@@ -79,17 +79,26 @@ Two related notes:
 `/quote` validates every important field in the browser (`src/lib/quote.ts`)
 before anything is sent.
 
-A static site has no server of its own, so there is nothing here to receive a
-form post — **and the form does not pretend otherwise.** With no endpoint
-configured it tells the visitor plainly that nothing was transmitted, then
-offers two working alternatives: a prefilled email containing everything they
-typed, and the office phone number.
+A static site has no server of its own, so submissions are relayed by
+**FormSubmit**, which emails each one to the address in `src/lib/site.ts`
+(currently `peaklogisticsservices@gmail.com`). No account or API key is needed.
 
-To accept submissions online, set `NEXT_PUBLIC_QUOTE_ENDPOINT` to any URL that
-accepts a JSON POST — Formspree, Web3Forms, a Google Apps Script — as a
-repository variable of that name. The browser then posts straight to it. If the
-site later moves to a Node host (Vercel, a VPS), a server route can be added
-back and pointed at the same shared validation.
+> **One-time activation.** The first submission makes FormSubmit send a
+> confirmation email to that inbox. Until someone opens it and clicks the
+> link, nothing is delivered. Submit the form once yourself and confirm it
+> before pointing customers at the site.
+
+A hidden honeypot field is included; anything that fills it is dropped without
+a network request, so scripted spam never reaches the inbox.
+
+If the relay is unreachable or returns an error, the form does not claim the
+message was sent: it says so and hands the visitor a prefilled email
+containing everything they typed, plus the office phone number.
+
+To use a different relay (Formspree, Web3Forms, a Google Apps Script) or a real
+server route later, set `NEXT_PUBLIC_QUOTE_ENDPOINT` to any URL that accepts a
+JSON POST — as an environment variable or a repository variable of that name.
+The shared validation in `src/lib/quote.ts` stays put either way.
 
 ## Brand assets
 

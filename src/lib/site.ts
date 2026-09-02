@@ -13,8 +13,8 @@ export const company = {
   descriptor:
     "A full-service logistics company committed to delivering efficient, reliable and client-focused solutions across Liberia.",
   phone: {
-    display: "+231 886 826 289",
-    href: "tel:+231886826289",
+    display: "+231 88 690 5096",
+    href: "tel:+231886905096",
   },
   email: {
     display: "peaklogisticsservices@gmail.com",
@@ -49,6 +49,25 @@ export const company = {
  * path and every absolute URL below follow automatically — `next.config.ts`
  * derives `basePath` from this same value.
  */
+/**
+ * Where the quote form posts.
+ *
+ * The site is a static export with no server of its own, so submissions are
+ * relayed by FormSubmit, which emails them straight to the address above.
+ * FormSubmit needs no account or API key: the first submission triggers a
+ * one-time confirmation email to that inbox, and every submission after it is
+ * delivered automatically.
+ *
+ * Set NEXT_PUBLIC_QUOTE_ENDPOINT to point at a different relay (Formspree,
+ * Web3Forms) or at a real server route if the site ever moves to a Node host.
+ * Any endpoint accepting a JSON POST works.
+ */
+export const quoteEndpoint =
+  // `||`, not `??`: the deploy workflow passes an empty string when the
+  // optional repository variable is unset, and that must fall back too.
+  process.env.NEXT_PUBLIC_QUOTE_ENDPOINT?.trim() ||
+  `https://formsubmit.co/ajax/${company.email.display}`;
+
 export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ??
   "https://tolbertinnovation-debug.github.io/Pls"
