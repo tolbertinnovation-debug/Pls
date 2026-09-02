@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import StatsBand from "@/components/sections/StatsBand";
 import Gallery from "@/components/sections/Gallery";
+import Journey from "@/components/sections/Journey";
 import Intro from "@/components/sections/Intro";
 import ServicesGrid from "@/components/sections/ServicesGrid";
 import WhyPeak from "@/components/sections/WhyPeak";
@@ -22,6 +23,7 @@ export default function HomePage() {
       <WhyPeak />
       <StatsBand set="performance" label="Delivery performance" />
       <MissionVision />
+      <Journey />
       <WhoWeServe />
       <HowWeHelp />
       <Gallery />

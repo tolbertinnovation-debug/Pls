@@ -373,9 +373,52 @@ export const headlineStats = [
 
 export const performanceStats = [
   { value: "98%", label: "On-Time Delivery Rate" },
-  { value: "15", label: "Countries Reached" },
+  { value: "15", label: "Counties Reached Nationwide" },
   { value: "3", label: "Major Ports Served" },
   { value: "40+", label: "Team Members" },
+] as const;
+
+/**
+ * Company milestones, transcribed from the reference build the client
+ * supplied and confirmed by them as accurate.
+ *
+ * The reference shows a year against each milestone, but those year pills are
+ * small dark text in a phone recording of a screen and could not be read with
+ * confidence even upscaled. Rather than publish a guessed founding year, each
+ * entry carries an optional `year` that is simply not rendered while empty —
+ * fill these in and the dated rail appears.
+ */
+export const milestones = [
+  {
+    year: "",
+    title: "Founded at the Freeport",
+    description:
+      "Opened as a two-person customs clearance desk at the Freeport of Monrovia.",
+  },
+  {
+    year: "",
+    title: "Freight Forwarding Launched",
+    description:
+      "Added freight forwarding and opened our first bonded warehouse.",
+  },
+  {
+    year: "",
+    title: "Regional Expansion",
+    description:
+      "Opened regional offices to reach clients outside Monrovia.",
+  },
+  {
+    year: "",
+    title: "Real-Time Tracking",
+    description:
+      "Launched live cargo tracking and around-the-clock client support.",
+  },
+  {
+    year: "",
+    title: "Today",
+    description:
+      "Serving 200+ clients, with 500+ shipments handled and counting.",
+  },
 ] as const;
 
 /* ------------------------------------------------------------------ */
