@@ -44,6 +44,18 @@ jobs:
           NEXT_PUBLIC_QUOTE_ENDPOINT: ${{ vars.NEXT_PUBLIC_QUOTE_ENDPOINT }}
         run: npm run build
 
+      - name: Report Pages configuration
+        # Deploying to Pages needs Source = "GitHub Actions" AND a branch the
+        # github-pages environment allows. Print both so a failed deploy says
+        # which one is wrong instead of failing with no output.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "workflow ref   : ${{ github.ref_name }}"
+          echo "default branch : $(gh api repos/${{ github.repository }} --jq .default_branch 2>&1)"
+          echo "pages config   : $(gh api repos/${{ github.repository }}/pages --jq '{build_type,html_url}' 2>&1)"
+          echo "(build_type must be \"workflow\"; \"legacy\" means Source is still Deploy from a branch)"
+
       - name: Bypass Jekyll
         # Without this, GitHub Pages would strip the _next/ directory.
         run: touch out/.nojekyll
