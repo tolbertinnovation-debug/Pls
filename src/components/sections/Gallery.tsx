@@ -13,10 +13,10 @@ export default function Gallery() {
           eyebrow="In the field"
           align="center"
           title="Cargo on the Move"
-          lead="Containerised freight in transit."
+          lead="Freight, clearance and delivery — the work behind every shipment."
         />
 
-        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((shot, i) => (
             <Reveal key={shot.src} as="li" delay={i * 60}>
               <figure className="group relative m-0 overflow-hidden border border-peak-950/12">
@@ -26,7 +26,7 @@ export default function Gallery() {
                   width={shot.width}
                   height={shot.height}
                   loading="lazy"
-                  sizes="(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 23vw"
+                  sizes="(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 31vw"
                   className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04] lg:h-64"
                 />
                 <div

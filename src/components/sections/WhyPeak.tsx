@@ -25,10 +25,10 @@ export default function WhyPeak() {
               />
               <figure className="relative m-0 overflow-hidden">
                 <Image
-                  src={asset("/images/containers.jpg")}
-                  alt="Stacked shipping containers awaiting onward transport"
-                  width={562}
-                  height={660}
+                  src={asset("/images/fleet-lineup.webp")}
+                  alt="Container trucks lined up at a yard with port cranes behind and a team in discussion"
+                  width={1200}
+                  height={675}
                   loading="lazy"
                   sizes="(max-width: 1023px) 90vw, 38vw"
                   className="h-80 w-full object-cover sm:h-[26rem] lg:h-[34rem]"

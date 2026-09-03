@@ -152,6 +152,8 @@ export type Service = {
   /** Capability bullets, taken from the profile. */
   capabilities: string[];
   icon: IconName;
+  /** Card photo. 1000x563 WebP; rendered through `asset()` for the base path. */
+  image: { src: string; alt: string };
   metaTitle: string;
   metaDescription: string;
 };
@@ -170,6 +172,10 @@ export const services: Service[] = [
       "Route optimization and carrier coordination",
       "Shipment tracking and global shipping support",
     ],
+    image: {
+      src: "/images/port-crane.webp",
+      alt: "A gantry crane lifting a container from a vessel at a container terminal",
+    },
     icon: "Ship",
     metaTitle: "Freight Forwarding in Liberia",
     metaDescription:
@@ -188,6 +194,10 @@ export const services: Service[] = [
       "Duty and tax processing",
       "Regulatory compliance with local and international laws",
     ],
+    image: {
+      src: "/images/customs-clearance.webp",
+      alt: "A clearing agent handing import documents to a customs officer at a port office window",
+    },
     icon: "FileCheck",
     metaTitle: "Customs Brokerage & Clearing in Liberia",
     metaDescription:
@@ -205,6 +215,10 @@ export const services: Service[] = [
       "Preparation of shipping documents — invoices, bills of lading, certificates of origin, packing lists and more",
       "End-to-end documentation management",
     ],
+    image: {
+      src: "/images/gate-check.webp",
+      alt: "A checker with a clipboard recording a container truck at a terminal gate",
+    },
     icon: "FileText",
     metaTitle: "Shipping Documentation Services in Liberia",
     metaDescription:
@@ -223,6 +237,10 @@ export const services: Service[] = [
       "Inventory control and coordination",
       "Warehousing and distribution solutions",
     ],
+    image: {
+      src: "/images/warehouse-racking.webp",
+      alt: "Warehouse staff checking stock against racked pallets while a forklift moves a load",
+    },
     icon: "Network",
     metaTitle: "Supply Chain Management in Liberia",
     metaDescription:
@@ -241,6 +259,10 @@ export const services: Service[] = [
       "Cross-trade operations",
       "Last-mile delivery solutions",
     ],
+    image: {
+      src: "/images/container-loading.webp",
+      alt: "A forklift loading wrapped pallets into a shipping container under a canopy",
+    },
     icon: "Warehouse",
     metaTitle: "Specialized Logistics Services in Liberia",
     metaDescription:
@@ -258,6 +280,10 @@ export const services: Service[] = [
       "Reliable and flexible cargo delivery",
       "Customized transport solutions based on client needs",
     ],
+    image: {
+      src: "/images/truck-highway.webp",
+      alt: "An articulated truck carrying a shipping container on an open road",
+    },
     icon: "Truck",
     metaTitle: "Transportation Services in Liberia",
     metaDescription:
@@ -444,38 +470,52 @@ export const milestones = [
 /* ------------------------------------------------------------------ */
 
 /**
- * Stills from footage supplied by the client of containerised cargo under way.
- * Captions describe the cargo, not ownership: Peak Logistics is a freight
- * forwarder, so nothing here claims the vessel is theirs.
+ * Operations imagery supplied by the client, plus one still from their own
+ * cargo footage. Captions describe the work, not ownership: Peak Logistics is
+ * a freight forwarder, so nothing here claims a vessel or terminal is theirs.
  */
 export const gallery = [
+  {
+    src: "/images/quayside-handling.webp",
+    width: 1000,
+    height: 563,
+    alt: "A reach stacker lifting a container beside a berthed vessel while crew direct the move",
+    caption: "Quayside handling",
+  },
+  {
+    src: "/images/team-loading.webp",
+    width: 1000,
+    height: 563,
+    alt: "A crew in high-visibility vests loading cartons onto a box truck with a pallet jack",
+    caption: "Loading for onward delivery",
+  },
+  {
+    src: "/images/warehouse-racking.webp",
+    width: 1000,
+    height: 563,
+    alt: "Warehouse staff checking stock against racked pallets while a forklift moves a load",
+    caption: "Warehousing and inventory",
+  },
+  {
+    src: "/images/fleet-lineup.webp",
+    width: 1200,
+    height: 675,
+    alt: "Container trucks lined up at a yard with port cranes behind and a team in discussion",
+    caption: "Fleet ready for dispatch",
+  },
+  {
+    src: "/images/customs-clearance.webp",
+    width: 1000,
+    height: 563,
+    alt: "A clearing agent handing import documents to a customs officer at a port office window",
+    caption: "Customs clearance",
+  },
   {
     src: "/images/fleet-deck.jpg",
     width: 719,
     height: 466,
     alt: "Container ship deck and crane at sunrise, seen from on board",
     caption: "Sea freight under way",
-  },
-  {
-    src: "/images/fleet-containers.jpg",
-    width: 720,
-    height: 547,
-    alt: "Stacked shipping containers secured on a vessel's deck",
-    caption: "Containerised cargo secured on deck",
-  },
-  {
-    src: "/images/fleet-cosco.jpg",
-    width: 640,
-    height: 640,
-    alt: "Close view of shipping containers stacked several high",
-    caption: "Consolidated container stacks",
-  },
-  {
-    src: "/images/fleet-wake.jpg",
-    width: 640,
-    height: 472,
-    alt: "A vessel's wake alongside the hull while under way",
-    caption: "Cargo in transit",
   },
 ] as const;
 
