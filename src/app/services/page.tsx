@@ -7,6 +7,7 @@ import Container from "@/components/Container";
 import Icon, { type IconKey } from "@/components/Icon";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
+import ContainerGuide from "@/components/sections/ContainerGuide";
 import HowWeHelp from "@/components/sections/HowWeHelp";
 import { absolute, services } from "@/lib/site";
 
@@ -119,6 +120,7 @@ export default function ServicesPage() {
         );
       })}
 
+      <ContainerGuide />
       <HowWeHelp />
       <CTABand />
     </>

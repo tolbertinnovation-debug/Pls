@@ -520,6 +520,49 @@ export const gallery = [
 ] as const;
 
 /* ------------------------------------------------------------------ */
+/* Container reference                                                 */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Standard ISO dry-container sizes, for clients deciding what to book.
+ *
+ * Figures are nominal EXTERNAL dimensions to the ISO standard, which is what
+ * a carrier quotes against. Internal capacity and payload vary by build and
+ * shipping line, so the section says so rather than presenting one number as
+ * definitive.
+ */
+export const containerTypes = [
+  {
+    name: "20ft Standard",
+    code: "20GP",
+    metric: "6.06 × 2.44 × 2.59 m",
+    imperial: "20' × 8' × 8'6\"",
+    capacity: "≈ 33 m³",
+    bestFor: "Dense cargo — tiles, machinery parts, tinned goods.",
+    /** Drawn to relative scale: length 1, height 1. */
+    scale: { length: 0.5, height: 0.894 },
+  },
+  {
+    name: "40ft Standard",
+    code: "40GP",
+    metric: "12.19 × 2.44 × 2.59 m",
+    imperial: "40' × 8' × 8'6\"",
+    capacity: "≈ 67 m³",
+    bestFor: "General mixed cargo and palletised consignments.",
+    scale: { length: 1, height: 0.894 },
+  },
+  {
+    name: "40ft High Cube",
+    code: "40HC",
+    metric: "12.19 × 2.44 × 2.90 m",
+    imperial: "40' × 8' × 9'6\"",
+    capacity: "≈ 76 m³",
+    bestFor: "Light, bulky cargo — furniture, packaging, textiles.",
+    scale: { length: 1, height: 1 },
+  },
+] as const;
+
+/* ------------------------------------------------------------------ */
 /* Navigation                                                          */
 /* ------------------------------------------------------------------ */
 
