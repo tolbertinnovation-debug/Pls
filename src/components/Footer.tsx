@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-4">
             <Logo tone="light" height={54} />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/65">
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/75">
               {company.descriptor} We move goods by air, sea, road and rail —
               from freight coordination and customs clearance through to
               warehousing and final delivery.

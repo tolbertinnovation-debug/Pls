@@ -95,7 +95,7 @@ export default function AboutPage() {
             title="Expanding our services, entering new markets"
           />
           <Reveal delay={100}>
-            <p className="mx-auto mt-7 max-w-3xl text-center text-lg leading-relaxed text-white/65">
+            <p className="mx-auto mt-7 max-w-3xl text-center text-lg leading-relaxed text-white/75">
               We are focused on expanding our service offerings and entering new
               markets. Our goal is to continuously innovate and deliver logistics
               solutions that improve efficiency, reduce costs and enhance client

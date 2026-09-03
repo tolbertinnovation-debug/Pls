@@ -169,7 +169,7 @@ export default async function ServiceDetailPage({
                   <h2 className="mt-5 font-display text-xl font-bold">
                     Need {service.title.toLowerCase()}?
                   </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-white/65">
+                  <p className="mt-3 text-sm leading-relaxed text-white/75">
                     Send us your shipment details and we will come back with a
                     solution built around them.
                   </p>

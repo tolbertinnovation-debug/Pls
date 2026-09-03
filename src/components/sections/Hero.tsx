@@ -18,19 +18,34 @@ export default function Hero() {
       <HeroVideo />
 
       {/*
-        Scrim. The footage is bright gold, so the copy needs a dark ground to
-        sit on: a flat wash everywhere (heavier on mobile, where the text runs
-        the full width), a left-weighted gradient on wider screens where the
-        text column is, and a fade into the section colour at the bottom.
+        Scrim. Weighted to the left, where the copy sits, so the footage stays
+        legible on the right instead of disappearing under a flat wash. Mobile
+        gets a vertical version because the copy runs the full width there.
+        Contrast is measured against the rendered result, not assumed.
       */}
-      <div aria-hidden className="absolute inset-0 -z-10 bg-peak-950/62 lg:bg-peak-950/42" />
+      {/*
+        Multi-stop scrims, shaped around where the copy actually sits so the
+        footage stays open everywhere else. Desktop darkens the left column and
+        releases to almost nothing on the right; mobile darkens the middle band
+        the text occupies and leaves the sky above and the containers below
+        clear. Both are measured against the rendered pixels, not estimated.
+      */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-peak-950/90 via-peak-950/60 to-transparent lg:block"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(3,32,19,0.74)_0%,rgba(3,32,19,0.62)_13%,rgba(3,32,19,0.90)_24%,rgba(3,32,19,0.90)_76%,rgba(3,32,19,0.45)_88%,rgba(3,32,19,0.94)_100%)] lg:hidden"
       />
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-peak-950 via-peak-950/70 to-transparent"
+        className="absolute inset-0 -z-10 hidden bg-[linear-gradient(to_right,rgba(3,32,19,0.97)_0%,rgba(3,32,19,0.90)_30%,rgba(3,32,19,0.48)_62%,rgba(3,32,19,0.05)_100%)] lg:block"
+      />
+      {/* Keeps the navigation readable over the brightest part of the sky. */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 -z-10 hidden h-24 bg-gradient-to-b from-peak-950/70 to-transparent lg:block"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-peak-950 via-peak-950/55 to-transparent"
       />
 
       <Container className="relative flex flex-1 items-center">

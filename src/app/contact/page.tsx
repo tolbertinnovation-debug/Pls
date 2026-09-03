@@ -131,7 +131,7 @@ export default function ContactPage() {
                   <h2 className="mt-7 text-2xl font-extrabold leading-tight lg:text-3xl">
                     Have cargo to move?
                   </h2>
-                  <p className="mt-4 leading-relaxed text-white/65">
+                  <p className="mt-4 leading-relaxed text-white/75">
                     Send us the shipment details — origin, destination, cargo
                     type and timing — and we will prepare a quote around them.
                   </p>

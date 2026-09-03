@@ -87,7 +87,7 @@ export default function QuotePage() {
                   <h2 className="mt-4 font-display text-base font-bold">
                     What helps us quote faster
                   </h2>
-                  <ul className="mt-4 space-y-2.5 text-sm text-white/65">
+                  <ul className="mt-4 space-y-2.5 text-sm text-white/75">
                     <li>· Cargo description, weight and dimensions</li>
                     <li>· Origin and final delivery point</li>
                     <li>· Whether customs clearing is required</li>

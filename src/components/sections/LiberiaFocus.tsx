@@ -34,7 +34,7 @@ export default function LiberiaFocus() {
             />
 
             <Reveal delay={100}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/55">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/75">
                 Our team operates from Bushrod Island in Monrovia, directly
                 across from the Freeport of Monrovia — the point through which
                 most of the country&rsquo;s import and export cargo passes.
