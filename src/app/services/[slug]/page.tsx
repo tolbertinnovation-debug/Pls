@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
@@ -11,6 +12,7 @@ import Reveal from "@/components/Reveal";
 import { ButtonLink } from "@/components/Button";
 import {
   absolute,
+  asset,
   company,
   howWeHelp,
   serviceBySlug,
@@ -78,6 +80,26 @@ export default async function ServiceDetailPage({
         title={service.title}
         lead={service.intro}
       />
+
+      {/* Each service leads with its own photograph, so the six detail pages
+          are visually distinct rather than six identical text layouts. */}
+      <section className="bg-white pt-10 lg:pt-14">
+        <Container>
+          <Reveal>
+            <figure className="relative m-0 overflow-hidden border border-peak-950/12">
+              <Image
+                src={asset(service.image.src)}
+                alt={service.image.alt}
+                width={1000}
+                height={563}
+                priority
+                sizes="(max-width: 1279px) 92vw, 1200px"
+                className="h-56 w-full object-cover sm:h-72 lg:h-96"
+              />
+            </figure>
+          </Reveal>
+        </Container>
+      </section>
 
       <section className="bg-white py-16 lg:py-24">
         <Container>

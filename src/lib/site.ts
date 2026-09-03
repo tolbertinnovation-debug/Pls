@@ -412,6 +412,8 @@ export const headlineStats = [
   { value: "500+", label: "Shipments Delivered" },
   { value: "200+", label: "Satisfied Clients" },
   { value: "24/7", label: "Customer Support" },
+  // Confirmed 3 Sep 2026 in preference to the "12+ Years Serving Liberia"
+  // figure that also appears in the reference build.
   { value: "10+", label: "Years of Experience" },
 ] as const;
 

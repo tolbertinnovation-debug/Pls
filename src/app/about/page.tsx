@@ -64,10 +64,10 @@ export default function AboutPage() {
                   className="absolute -bottom-4 -right-4 hidden h-full w-full border border-gold-500/50 sm:block"
                 />
                 <Image
-                  src={asset("/images/port-monrovia.jpg")}
-                  alt="Cargo being handled at a container terminal — ship, gantry crane and haulage truck"
-                  width={1148}
-                  height={942}
+                  src={asset("/images/team-loading.webp")}
+                  alt="A crew in high-visibility vests loading cartons onto a box truck with a pallet jack"
+                  width={1000}
+                  height={563}
                   loading="lazy"
                   sizes="(max-width: 1023px) 92vw, 40vw"
                   className="relative h-72 w-full object-cover sm:h-96 lg:h-[26rem]"
