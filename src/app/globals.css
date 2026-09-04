@@ -215,20 +215,22 @@
   }
 
   /* ---- hero headline rotation ----
-     The outgoing line clears out before the incoming one arrives: it leaves
-     quickly on an ease-in, and the replacement is held back 180ms so the two
-     read as one line replacing another rather than a cross-fade mush. */
+     Sequential, not a cross-fade. The two lines share a grid cell, so any
+     overlap is a double exposure: at 180ms of overlap the line sat at 42%
+     opacity for 200ms and read as a wash rather than a change. The outgoing
+     line is now fully gone by 280ms and the replacement starts at 300ms, so
+     the second line clears and is rewritten. */
   .js [data-phrase="in"] {
     transform: none;
     transition:
-      opacity 0.45s var(--ease-out-expo) 0.18s,
-      transform 0.62s var(--ease-out-expo) 0.18s;
+      opacity 0.42s var(--ease-out-expo) 0.3s,
+      transform 0.58s var(--ease-out-expo) 0.3s;
   }
   .js [data-phrase="out"] {
     transform: translateY(-0.42em);
     transition:
-      opacity 0.3s ease-in,
-      transform 0.42s ease-in;
+      opacity 0.28s ease-in,
+      transform 0.34s ease-in;
   }
   /* No transition, so a line that has finished leaving snaps back below
      rather than sliding across the headline on its way. */
