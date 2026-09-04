@@ -18,7 +18,7 @@ export default function Gallery() {
 
         <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((shot, i) => (
-            <Reveal key={shot.src} as="li" delay={i * 60}>
+            <Reveal key={shot.src} as="li" delay={i * 60} variant="clip">
               <figure className="group relative m-0 overflow-hidden border border-peak-950/12">
                 <Image
                   src={asset(shot.src)}
@@ -34,8 +34,8 @@ export default function Gallery() {
                   className="absolute inset-0 bg-gradient-to-t from-peak-950/85 via-peak-950/10 to-transparent"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 p-5">
-                  <span className="block h-px w-8 rule-gold" />
-                  <span className="mt-2.5 block text-sm font-semibold text-white">
+                  <span className="block h-px w-8 origin-left rule-gold transition-transform duration-500 group-hover:scale-x-[2.5]" />
+                  <span className="mt-2.5 block text-sm font-semibold text-white transition-transform duration-500 group-hover:-translate-y-0.5">
                     {shot.caption}
                   </span>
                 </figcaption>

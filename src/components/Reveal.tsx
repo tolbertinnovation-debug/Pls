@@ -23,16 +23,29 @@ function getObserver() {
   return observer;
 }
 
+/**
+ * How the element arrives.
+ *
+ * - `up`    lift and fade — the default, used for text and cards
+ * - `left`  / `right` — for the two halves of a split layout
+ * - `scale` a small settle, for panels that should feel placed
+ * - `clip`  a wipe up from the baseline, for photographs, where a fade
+ *           reads as an image still loading
+ * - `fade`  opacity only, where movement would fight a neighbour
+ */
+export type RevealVariant = "up" | "left" | "right" | "scale" | "clip" | "fade";
+
 type RevealProps = {
   children: ReactNode;
   className?: string;
   /** Stagger, in milliseconds. */
   delay?: number;
+  variant?: RevealVariant;
   as?: ElementType;
 };
 
 /**
- * Fades and lifts its children into view once, on scroll.
+ * Brings its children into view once, on scroll.
  *
  * The hidden state lives in CSS behind `.js` and a `prefers-reduced-motion`
  * query, so this degrades to plain visible content when either JavaScript or
@@ -42,6 +55,7 @@ export default function Reveal({
   children,
   className,
   delay = 0,
+  variant = "up",
   as: Tag = "div",
 }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
@@ -68,7 +82,12 @@ export default function Reveal({
     <Tag
       ref={ref}
       data-reveal=""
-      style={delay ? ({ "--reveal-delay": `${delay}ms` } as React.CSSProperties) : undefined}
+      data-variant={variant}
+      style={
+        delay
+          ? ({ "--reveal-delay": `${delay}ms` } as React.CSSProperties)
+          : undefined
+      }
       className={className}
     >
       {children}

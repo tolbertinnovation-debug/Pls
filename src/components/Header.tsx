@@ -7,6 +7,7 @@ import { ChevronDown, Menu, Phone, X } from "lucide-react";
 
 import Container from "@/components/Container";
 import Logo from "@/components/Logo";
+import ScrollProgress from "@/components/ScrollProgress";
 import { ButtonLink } from "@/components/Button";
 import { company, navigation, services } from "@/lib/site";
 
@@ -95,6 +96,7 @@ export default function Header() {
           : "border-b border-white/10 bg-transparent"
       }`}
     >
+      <ScrollProgress />
       <Container>
         <div
           className={`flex items-center justify-between gap-4 transition-[height] duration-300 ${
@@ -120,7 +122,7 @@ export default function Header() {
                       <Link
                         href={item.href}
                         aria-current={active ? "page" : undefined}
-                        className={`relative px-3.5 py-2 text-[0.9375rem] font-medium transition-colors ${
+                        className={`group/nav relative px-3.5 py-2 text-[0.9375rem] font-medium transition-colors ${
                           solid
                             ? active
                               ? "text-peak-800"
@@ -134,7 +136,11 @@ export default function Header() {
                         <span
                           className={`absolute inset-x-3.5 -bottom-0.5 h-0.5 origin-left rounded-full transition-transform duration-300 ${
                             solid ? "bg-gold-500" : "bg-gold-400"
-                          } ${active ? "scale-x-100" : "scale-x-0"}`}
+                          } ${
+                            active
+                              ? "scale-x-100"
+                              : "scale-x-0 group-hover/nav:scale-x-100"
+                          }`}
                         />
                       </Link>
                     </li>
@@ -190,8 +196,20 @@ export default function Header() {
                       <div className="overflow-hidden border border-peak-950/10 bg-white shadow-[0_28px_60px_-24px_rgba(3,32,19,0.4)]">
                         <div className="h-0.5 rule-gold" />
                         <ul className="grid grid-cols-2 gap-px bg-peak-950/8">
-                          {item.children.map((child) => (
-                            <li key={child.href} className="bg-white">
+                          {item.children.map((child, ci) => (
+                            <li
+                              key={child.href}
+                              className={`bg-white transition-all duration-300 ${
+                                desktopServicesOpen
+                                  ? "translate-y-0 opacity-100"
+                                  : "translate-y-1 opacity-0"
+                              }`}
+                              style={{
+                                transitionDelay: desktopServicesOpen
+                                  ? `${60 + ci * 35}ms`
+                                  : "0ms",
+                              }}
+                            >
                               <Link
                                 href={child.href}
                                 className="group flex h-full flex-col gap-1 p-4 transition-colors hover:bg-peak-50"
@@ -260,18 +278,21 @@ export default function Header() {
       </Container>
 
       {/* ------------------------------ mobile panel ------------------------------ */}
-      <div
-        id="mobile-menu"
-        hidden={!mobileOpen}
-        className="lg:hidden"
-      >
-        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-peak-950/10 bg-white">
+      <div id="mobile-menu" hidden={!mobileOpen} className="lg:hidden">
+        <div
+          data-enter
+          className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-peak-950/10 bg-white"
+        >
           <Container className="py-4">
             <ul className="divide-y divide-peak-950/8">
-              {navigation.map((item) => {
+              {navigation.map((item, mi) => {
+                const stagger = {
+                  "--enter-delay": `${70 + mi * 55}ms`,
+                } as React.CSSProperties;
+
                 if (!item.children) {
                   return (
-                    <li key={item.href}>
+                    <li key={item.href} data-enter style={stagger}>
                       <Link
                         href={item.href}
                         aria-current={isActive(item.href) ? "page" : undefined}
@@ -285,7 +306,7 @@ export default function Header() {
                   );
                 }
                 return (
-                  <li key={item.href}>
+                  <li key={item.href} data-enter style={stagger}>
                     <button
                       type="button"
                       onClick={() => setMobileServicesOpen((v) => !v)}

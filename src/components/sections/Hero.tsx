@@ -92,6 +92,20 @@ export default function Hero() {
             </Reveal>
           </div>
         </div>
+
+        {/* Scroll cue. Decorative — the page scrolls the same without it — and
+            it sits in the open right-hand third, which only exists at lg. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute bottom-8 right-0 hidden flex-col items-center gap-3 lg:flex"
+        >
+          <span className="font-display text-[0.625rem] font-bold uppercase tracking-[0.28em] text-white/60 [writing-mode:vertical-rl]">
+            Scroll
+          </span>
+          <span className="relative block h-14 w-px bg-white/25">
+            <span className="animate-cue absolute -left-[3px] top-0 block size-[7px] rounded-full bg-gold-400" />
+          </span>
+        </div>
       </Container>
 
       {/* -------------------------- transport modes -------------------------- */}

@@ -18,16 +18,26 @@ export default function Journey() {
 
         <ol className="mt-16 grid gap-y-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-6">
           {milestones.map((stage, i) => (
-            <Reveal key={stage.title} as="li" delay={i * 80} className="relative">
-              {/* Dashed rail between markers, desktop only. */}
+            <Reveal
+              key={stage.title}
+              as="li"
+              delay={i * 80}
+              className="group relative"
+            >
+              {/* Dashed rail between markers, desktop only. Draws as the
+                  milestone is revealed, so the timeline reads left to right. */}
               <span
                 aria-hidden
+                data-rail
                 className={`absolute left-0 top-5 hidden h-px border-t border-dashed border-peak-950/25 lg:block ${
                   i === milestones.length - 1 ? "w-0" : "w-full"
                 }`}
               />
               <div className="relative flex items-center gap-4 lg:block">
-                <span className="relative z-10 flex size-10 shrink-0 items-center justify-center rounded-full bg-peak-900 font-display text-xs font-bold tabular-nums text-gold-400">
+                <span
+                  data-pop
+                  className="relative z-10 flex size-10 shrink-0 items-center justify-center rounded-full bg-peak-900 font-display text-xs font-bold tabular-nums text-gold-400 ring-0 ring-gold-400/30 transition-[box-shadow] duration-300 group-hover:ring-8"
+                >
                   {stage.year || i + 1}
                 </span>
                 <h3 className="font-display text-lg font-bold leading-snug text-peak-950 lg:mt-6">

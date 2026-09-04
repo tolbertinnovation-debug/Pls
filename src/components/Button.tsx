@@ -14,12 +14,14 @@ const SIZES: Record<Size, string> = {
   lg: "min-h-13 px-7 py-3.5 text-base",
 };
 
+/* `btn-sheen` gives the filled buttons a light sweep on hover; the sweep
+   element always exists, only its animation is behind the motion query. */
 const VARIANTS: Record<Variant, string> = {
   gold:
-    "bg-gold-400 text-peak-950 shadow-[0_1px_0_0_rgba(0,0,0,0.06)] " +
+    "btn-sheen bg-gold-400 text-peak-950 shadow-[0_1px_0_0_rgba(0,0,0,0.06)] " +
     "hover:bg-gold-300 hover:shadow-[0_8px_24px_-8px_rgba(228,171,8,0.65)]",
   green:
-    "bg-peak-800 text-white hover:bg-peak-700 " +
+    "btn-sheen bg-peak-800 text-white hover:bg-peak-700 " +
     "hover:shadow-[0_8px_24px_-10px_rgba(6,70,42,0.7)]",
   outline:
     "border border-peak-900/25 text-peak-900 hover:border-peak-800 hover:bg-peak-50",

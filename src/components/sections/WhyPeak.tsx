@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import Container from "@/components/Container";
 import Icon, { type IconKey } from "@/components/Icon";
+import Parallax from "@/components/Parallax";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { asset, strategicAdvantages } from "@/lib/site";
@@ -17,22 +18,28 @@ export default function WhyPeak() {
       <Container className="relative">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           {/* Image column */}
-          <Reveal className="lg:col-span-5">
+          <Reveal variant="clip" className="lg:col-span-5">
             <div className="relative h-full">
               <div
                 aria-hidden
                 className="absolute -left-4 -top-4 hidden h-full w-full border border-gold-400/35 sm:block"
               />
               <figure className="relative m-0 flex h-full min-h-80 flex-col overflow-hidden lg:min-h-[34rem]">
-                <Image
-                  src={asset("/images/fleet-lineup.webp")}
-                  alt="Container trucks lined up at a yard with port cranes behind and a team in discussion"
-                  width={1200}
-                  height={675}
-                  loading="lazy"
-                  sizes="(max-width: 1023px) 90vw, 38vw"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
+                {/* Taller than the frame, so the drift never exposes an edge. */}
+                <Parallax
+                  strength={0.07}
+                  className="absolute inset-x-0 -inset-y-[9%]"
+                >
+                  <Image
+                    src={asset("/images/fleet-lineup.webp")}
+                    alt="Container trucks lined up at a yard with port cranes behind and a team in discussion"
+                    width={1200}
+                    height={675}
+                    loading="lazy"
+                    sizes="(max-width: 1023px) 90vw, 38vw"
+                    className="h-full w-full object-cover"
+                  />
+                </Parallax>
                 <div
                   aria-hidden
                   className="absolute inset-0 bg-gradient-to-t from-peak-950 via-peak-950/25 to-transparent"

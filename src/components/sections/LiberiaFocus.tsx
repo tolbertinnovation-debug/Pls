@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ExternalLink, MapPin, Mail, Phone } from "lucide-react";
 
 import Container from "@/components/Container";
+import Parallax from "@/components/Parallax";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { LogoImage } from "@/components/Logo";
@@ -41,17 +42,22 @@ export default function LiberiaFocus() {
               </p>
             </Reveal>
 
-            <Reveal delay={140}>
-              <figure className="relative m-0 mt-10 overflow-hidden border border-white/15">
-                <Image
-                  src={asset("/images/monrovia-freeport.webp")}
-                  alt="Aerial view over Bushrod Island and the Freeport of Monrovia, with container terminal, cranes and the city beyond"
-                  width={1500}
-                  height={844}
-                  loading="lazy"
-                  sizes="(max-width: 1023px) 92vw, 46vw"
-                  className="h-64 w-full object-cover sm:h-80"
-                />
+            <Reveal delay={140} variant="clip">
+              <figure className="relative m-0 mt-10 h-64 overflow-hidden border border-white/15 sm:h-80">
+                <Parallax
+                  strength={0.07}
+                  className="absolute inset-x-0 -inset-y-[9%]"
+                >
+                  <Image
+                    src={asset("/images/monrovia-freeport.webp")}
+                    alt="Aerial view over Bushrod Island and the Freeport of Monrovia, with container terminal, cranes and the city beyond"
+                    width={1500}
+                    height={844}
+                    loading="lazy"
+                    sizes="(max-width: 1023px) 92vw, 46vw"
+                    className="h-full w-full object-cover"
+                  />
+                </Parallax>
                 <div
                   aria-hidden
                   className="absolute inset-0 bg-gradient-to-t from-peak-950/80 via-transparent to-transparent"
