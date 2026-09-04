@@ -408,6 +408,29 @@ export const howWeHelp = [
  * reference build the client supplied and then confirmed. Keep them here, in
  * one place, so a correction is a single edit rather than a hunt through JSX.
  */
+/**
+ * The second line of the hero headline, cycled one after another.
+ *
+ * The first entry is the company tagline and is what renders on the server,
+ * so the tagline is what a visitor sees first, what a search engine indexes
+ * and what a screen reader is given. The rest restate figures already on this
+ * page rather than making new claims: nationwide reach is the fifteen-counties
+ * figure, on-time delivery is the 98% rate, and the responsibility line is the
+ * single point of accountability named among the strategic advantages.
+ *
+ * Each phrase wraps to the same number of lines as the tagline at every
+ * viewport width — checked at 320, 360, 390, 412, 480, 640, 768, 1024, 1280
+ * and 1440. That matters: the phrases share one grid cell so the headline
+ * cannot resize mid-cycle, which means a phrase that wrapped differently
+ * would leave a blank line under the headline while it showed.
+ */
+export const heroHeadlines = [
+  "Our Commitment.",
+  "Moved Nationwide.",
+  "Delivered On Time.",
+  "Our Responsibility.",
+] as const;
+
 export const headlineStats = [
   { value: "500+", label: "Shipments Delivered" },
   { value: "200+", label: "Satisfied Clients" },

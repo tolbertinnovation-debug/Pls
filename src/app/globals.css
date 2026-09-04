@@ -214,6 +214,24 @@
     }
   }
 
+  /* ---- hero headline rotation ---- */
+  .js [data-phrase="in"] {
+    transform: none;
+    transition:
+      opacity 0.5s var(--ease-out-expo) 0.14s,
+      transform 0.6s var(--ease-out-expo) 0.14s;
+  }
+  .js [data-phrase="out"] {
+    transform: translateY(-0.32em);
+    transition:
+      opacity 0.4s ease-in,
+      transform 0.5s var(--ease-out-expo);
+  }
+  .js [data-phrase="idle"] {
+    transform: translateY(0.32em);
+    transition: none;
+  }
+
   /* ---- hero scroll cue ---- */
   .animate-cue {
     animation: cue 2.4s ease-in-out infinite;
@@ -248,6 +266,27 @@
 }
 
 @layer components {
+  /*
+    Hero headline rotation. The resting state is defined here, outside the
+    motion query, so that with JavaScript off — or with motion reduced, where
+    the script never advances the index — only the first phrase is visible
+    rather than all four printed on top of one another.
+
+      in    the current phrase
+      out   the one just replaced, lifting away
+      idle  everything else, waiting below
+
+    `idle` carries no transition, so a phrase that has finished leaving snaps
+    back beneath the line instead of sliding across it on the way.
+  */
+  [data-phrase] {
+    opacity: 0;
+  }
+
+  [data-phrase="in"] {
+    opacity: 1;
+  }
+
   /* The sweep itself is defined outside the motion query so the element
      exists either way; only the animation is conditional. */
   .btn-sheen {

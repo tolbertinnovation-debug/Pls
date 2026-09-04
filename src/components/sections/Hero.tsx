@@ -2,8 +2,10 @@ import { ArrowRight, Plane, Ship, Truck, TrainFront } from "lucide-react";
 
 import Container from "@/components/Container";
 import HeroVideo from "@/components/HeroVideo";
+import RotatingHeadline from "@/components/RotatingHeadline";
 import Reveal from "@/components/Reveal";
 import { ButtonLink } from "@/components/Button";
+import { heroHeadlines } from "@/lib/site";
 
 const MODES = [
   { name: "Air", Icon: Plane },
@@ -60,7 +62,13 @@ export default function Hero() {
             <Reveal delay={80}>
               <h1 className="mt-6 text-[2.375rem] font-extrabold leading-[0.98] text-white drop-shadow-[0_2px_24px_rgba(3,32,19,0.55)] min-[400px]:text-[2.75rem] sm:text-6xl lg:text-[4.25rem]">
                 Your Cargo.
-                <span className="block text-gold-400">Our Commitment.</span>
+                {/* The rotation is decoration; the tagline is what assistive
+                    technology is given, once, and it does not change. */}
+                <span className="sr-only"> {heroHeadlines[0]}</span>
+                <RotatingHeadline
+                  phrases={heroHeadlines}
+                  className="text-gold-400"
+                />
               </h1>
             </Reveal>
 
