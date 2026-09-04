@@ -214,21 +214,26 @@
     }
   }
 
-  /* ---- hero headline rotation ---- */
+  /* ---- hero headline rotation ----
+     The outgoing line clears out before the incoming one arrives: it leaves
+     quickly on an ease-in, and the replacement is held back 180ms so the two
+     read as one line replacing another rather than a cross-fade mush. */
   .js [data-phrase="in"] {
     transform: none;
     transition:
-      opacity 0.5s var(--ease-out-expo) 0.14s,
-      transform 0.6s var(--ease-out-expo) 0.14s;
+      opacity 0.45s var(--ease-out-expo) 0.18s,
+      transform 0.62s var(--ease-out-expo) 0.18s;
   }
   .js [data-phrase="out"] {
-    transform: translateY(-0.32em);
+    transform: translateY(-0.42em);
     transition:
-      opacity 0.4s ease-in,
-      transform 0.5s var(--ease-out-expo);
+      opacity 0.3s ease-in,
+      transform 0.42s ease-in;
   }
+  /* No transition, so a line that has finished leaving snaps back below
+     rather than sliding across the headline on its way. */
   .js [data-phrase="idle"] {
-    transform: translateY(0.32em);
+    transform: translateY(0.42em);
     transition: none;
   }
 
