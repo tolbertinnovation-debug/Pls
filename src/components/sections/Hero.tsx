@@ -20,22 +20,30 @@ export default function Hero() {
       <HeroVideo />
 
       {/*
-        Scrim. On desktop the copy sits in a left column, so a left-weighted
-        gradient keeps it legible while the right half of the footage stays
-        open. On mobile the copy runs the full width, so scrimming behind it
-        would mean scrimming the whole frame — which hid the footage almost
-        entirely. There the overlay stays light and the copy carries its own
-        translucent panel instead, leaving the ship visible above and below.
-        Every ratio below is measured against the rendered video, sampled
-        across the loop, not assumed.
+        Scrim. Neutral rather than green: a green wash tinted the whole frame
+        and the ship read as murk rather than a ship.
+
+        It also follows the footage instead of covering it evenly. Measuring
+        the raw video down the frame, the sun blows out to pure white from
+        roughly 40px to 260px and then falls away to about half that for the
+        rest of the hero. So the scrim is heavy only across the narrow band
+        the eyebrow sits in — 12px text needing 4.5:1 is what sets the
+        ceiling — and drops to 50% from 300px down, where the ship and the
+        containers are. Desktop keeps the same neutral tone, weighted left
+        where the copy column sits.
+
+        The hero text is close to solid white for the same reason: a faded
+        white needs a heavier scrim to reach the same ratio, which costs
+        footage. Every figure here is measured against the rendered video
+        across the loop, never assumed.
       */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(3,32,19,0.90)_0,rgba(3,32,19,0.36)_78px,rgba(3,32,19,0.38)_112px,rgba(3,32,19,0.80)_150px,rgba(3,32,19,0.82)_86%,rgba(3,32,19,0.98)_100%)] lg:hidden"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(6,10,12,0.86)_0,rgba(6,10,12,0.26)_78px,rgba(6,10,12,0.28)_118px,rgba(6,10,12,0.72)_150px,rgba(6,10,12,0.72)_195px,rgba(6,10,12,0.55)_300px,rgba(6,10,12,0.55)_86%,rgba(3,32,19,0.98)_100%)] lg:hidden"
       />
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 hidden bg-[linear-gradient(to_right,rgba(3,32,19,0.97)_0%,rgba(3,32,19,0.90)_30%,rgba(3,32,19,0.48)_62%,rgba(3,32,19,0.05)_100%)] lg:block"
+        className="absolute inset-0 -z-10 hidden bg-[linear-gradient(to_right,rgba(6,10,12,0.92)_0%,rgba(6,10,12,0.84)_30%,rgba(6,10,12,0.42)_62%,rgba(6,10,12,0.04)_100%)] lg:block"
       />
       {/* Keeps the navigation readable over the brightest part of the sky. */}
       <div
@@ -55,7 +63,7 @@ export default function Hero() {
               {/* gold-300 rather than the usual gold-400: this is the one place
                   small gold text sits over moving footage, and the lighter tone
                   buys real contrast headroom on the brightest frames. */}
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-300">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-200">
                 Logistics &amp; Transportation · Monrovia, Liberia
               </p>
             </Reveal>
@@ -74,11 +82,11 @@ export default function Hero() {
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-white">
                 Reliable, efficient and client-focused logistics solutions
                 across Liberia.
               </p>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70">
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-white/90">
                 From freight forwarding and customs clearance to warehousing,
                 transportation and final delivery, we help keep your cargo
                 moving.
