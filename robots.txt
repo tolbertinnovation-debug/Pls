@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://tolbertinnovation-debug.github.io/Pls
+Sitemap: https://tolbertinnovation-debug.github.io/Pls/sitemap.xml
