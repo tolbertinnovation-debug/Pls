@@ -65,8 +65,8 @@ export default function Intro() {
 
           {/* Value chain panel */}
           <Reveal delay={120} variant="right" className="lg:col-span-5">
-            <div className="relative border border-peak-950/10 bg-stone-canvas p-8 lg:p-10">
-              <div aria-hidden className="absolute inset-x-0 top-0 h-1 rule-gold" />
+            <div className="relative overflow-hidden rounded-[2rem] border border-peak-950/10 bg-stone-canvas p-8 shadow-[0_24px_70px_-42px_rgba(3,32,19,0.48)] lg:p-10">
+              <div aria-hidden className="absolute inset-x-0 top-0 h-1.5 rule-gold" />
               <h3 className="font-display text-lg font-bold text-peak-950">
                 The full logistics value chain
               </h3>
@@ -84,7 +84,7 @@ export default function Intro() {
                     delay={200 + i * 70}
                     className="flex items-center gap-4 border-t border-peak-950/10 py-3.5 first:border-t-0 first:pt-0"
                   >
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-peak-800 text-white">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-peak-800 text-white shadow-[0_8px_18px_-8px_rgba(3,32,19,0.8)]">
                       <Check aria-hidden className="size-3.5" strokeWidth={3} />
                     </span>
                     <span className="font-medium text-peak-950/85">{step}</span>

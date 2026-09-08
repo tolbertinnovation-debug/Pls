@@ -9,12 +9,12 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="grain relative overflow-hidden bg-peak-950 text-white">
+    <footer className="grain logistics-grid relative overflow-hidden bg-peak-950 text-white">
       {/* Gold hairline across the top edge. */}
       <div className="h-1 rule-gold" />
 
       <Container className="relative z-10 py-16 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+        <div className="grid gap-12 rounded-[2rem] border border-white/10 bg-white/[0.025] p-7 sm:p-10 lg:grid-cols-12 lg:gap-8 lg:p-12">
           {/* Brand */}
           <div className="lg:col-span-4">
             <Logo tone="light" height={54} />
@@ -116,7 +116,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-white/45">
             © {year} {company.name}. All rights reserved.
           </p>

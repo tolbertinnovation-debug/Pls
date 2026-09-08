@@ -31,7 +31,7 @@ export default function ServicesPage() {
       {/* Quick index */}
       <section className="border-b border-peak-950/10 bg-white">
         <Container>
-          <ul className="grid gap-px bg-peak-950/10 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-px overflow-hidden rounded-3xl border border-peak-950/10 bg-peak-950/10 shadow-[0_18px_46px_-36px_rgba(3,32,19,0.4)] sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <li key={service.slug} className="bg-white">
                 <a
@@ -66,7 +66,7 @@ export default function ServicesPage() {
                   className={`lg:col-span-5 ${alt ? "lg:order-2" : ""}`}
                 >
                   <div className="flex items-center gap-4">
-                    <span className="flex size-14 items-center justify-center bg-peak-800 text-gold-400">
+                    <span className="flex size-14 items-center justify-center rounded-2xl bg-peak-800 text-gold-400 shadow-[0_12px_26px_-16px_rgba(3,32,19,0.7)]">
                       <Icon name={service.icon as IconKey} className="size-7" />
                     </span>
                     <span
@@ -98,7 +98,7 @@ export default function ServicesPage() {
                   delay={100}
                   className={`lg:col-span-7 ${alt ? "lg:order-1" : ""}`}
                 >
-                  <ul className="h-full border border-peak-950/12 bg-white">
+                  <ul className="h-full overflow-hidden rounded-[1.75rem] border border-peak-950/10 bg-white shadow-[0_22px_58px_-40px_rgba(3,32,19,0.48)]">
                     {service.capabilities.map((capability) => (
                       <li
                         key={capability}

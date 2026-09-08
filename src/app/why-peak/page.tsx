@@ -38,12 +38,12 @@ export default function WhyPeakPage() {
           <ul className="mt-14 grid gap-6 md:grid-cols-2">
             {strategicAdvantages.map((item, i) => (
               <Reveal key={item.title} as="li" delay={i * 70} className="flex">
-                <article className="group relative flex w-full gap-6 border border-peak-950/12 bg-white p-7 transition-[border-color,box-shadow] duration-300 hover:border-peak-800/30 hover:shadow-[0_20px_44px_-30px_rgba(3,32,19,0.5)] lg:p-9">
+                <article className="group relative flex w-full gap-6 overflow-hidden rounded-3xl border border-peak-950/10 bg-white p-7 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-peak-800/25 hover:shadow-[0_24px_54px_-32px_rgba(3,32,19,0.5)] lg:p-9">
                   <span
                     aria-hidden
                     className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 rule-gold transition-transform duration-300 group-hover:scale-y-100"
                   />
-                  <span className="flex size-12 shrink-0 items-center justify-center bg-peak-800 text-gold-400">
+                  <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-peak-800 text-gold-400">
                     <Icon name={item.icon as IconKey} className="size-6" />
                   </span>
                   <div>
@@ -69,7 +69,7 @@ export default function WhyPeakPage() {
             <ul className="mt-12 grid gap-6 md:grid-cols-3">
               {coreValues.map((value, i) => (
                 <Reveal key={value.name} as="li" delay={i * 80}>
-                  <article className="h-full border border-peak-950/12 bg-stone-canvas p-7 text-center">
+                  <article className="h-full rounded-3xl border border-peak-950/10 bg-stone-canvas p-7 text-center">
                     <h3 className="font-display text-xl font-bold text-peak-950">
                       {value.name}
                     </h3>

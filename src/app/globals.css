@@ -48,7 +48,7 @@
   }
 
   body {
-    background-color: #ffffff;
+    background-color: var(--color-stone-canvas);
     color: var(--color-peak-950);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -83,6 +83,19 @@
 }
 
 @layer components {
+  .logistics-grid::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+  }
+
   /* Thin gold rule used above section eyebrows. */
   .rule-gold {
     background-image: linear-gradient(

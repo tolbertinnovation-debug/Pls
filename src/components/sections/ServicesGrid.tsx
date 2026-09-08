@@ -11,7 +11,8 @@ export default function ServicesGrid({
   showCta?: boolean;
 }) {
   return (
-    <section className="bg-stone-canvas py-20 lg:py-28">
+    <section className="logistics-grid relative overflow-hidden bg-stone-canvas py-20 lg:py-28">
+      <div aria-hidden className="absolute -right-40 top-24 size-96 rounded-full bg-peak-200/35 blur-3xl" />
       <Container>
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
@@ -28,7 +29,7 @@ export default function ServicesGrid({
           )}
         </div>
 
-        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
+        <ul className="relative mt-12 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
           {services.map((service, i) => (
             <Reveal key={service.slug} as="li" delay={i * 60} className="flex">
               <ServiceCard service={service} />

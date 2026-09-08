@@ -19,7 +19,7 @@ export default function Gallery() {
         <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((shot, i) => (
             <Reveal key={shot.src} as="li" delay={i * 60} variant="clip">
-              <figure className="group relative m-0 overflow-hidden border border-peak-950/12">
+              <figure className="group relative m-0 overflow-hidden rounded-[1.5rem] border border-peak-950/10 shadow-[0_18px_45px_-32px_rgba(3,32,19,0.5)]">
                 <Image
                   src={asset(shot.src)}
                   alt={shot.alt}

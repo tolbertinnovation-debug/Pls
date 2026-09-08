@@ -18,18 +18,20 @@ export default function PageHero({
   crumbs?: Crumb[];
 }) {
   return (
-    <section className="grain relative overflow-hidden bg-peak-950 pt-28 lg:pt-32">
+    <section className="grain logistics-grid relative overflow-hidden bg-peak-950 pt-28 lg:pt-32">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_65%_at_80%_0%,rgba(228,171,8,0.14),transparent_62%),radial-gradient(60%_70%_at_0%_100%,rgba(15,118,67,0.3),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(65%_90%_at_88%_15%,rgba(228,171,8,0.18),transparent_58%),radial-gradient(55%_75%_at_0%_100%,rgba(15,118,67,0.32),transparent_62%)]"
       />
+      <div aria-hidden className="absolute -right-24 bottom-8 hidden h-56 w-[28rem] rotate-[-8deg] rounded-full border border-white/10 lg:block" />
+      <div aria-hidden className="absolute -right-12 bottom-3 hidden h-56 w-[28rem] rotate-[-8deg] rounded-full border border-gold-400/20 lg:block" />
 
       <Container className="relative">
-        <div className="max-w-3xl py-14 lg:py-20">
+        <div className="max-w-3xl py-14 lg:py-24">
           {crumbs.length > 0 && (
             <Reveal>
               <nav aria-label="Breadcrumb">
-                <ol className="flex flex-wrap items-center gap-1 text-xs text-white/45">
+                <ol className="flex w-fit flex-wrap items-center gap-1 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-xs text-white/55 backdrop-blur-sm">
                   <li>
                     <Link href="/" className="transition-colors hover:text-gold-300">
                       Home
@@ -59,7 +61,7 @@ export default function PageHero({
 
           {eyebrow && (
             <Reveal delay={60} className="mt-8 flex items-center gap-3">
-              <span className="h-px w-10 rule-gold" />
+              <span className="h-1.5 w-1.5 rounded-full bg-gold-400 shadow-[0_0_0_5px_rgba(244,197,49,0.12)]" />
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-400">
                 {eyebrow}
               </p>
@@ -67,7 +69,7 @@ export default function PageHero({
           )}
 
           <Reveal delay={120}>
-            <h1 className="mt-5 text-4xl font-extrabold leading-[1.03] text-white sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.01] text-white sm:text-5xl lg:text-[4rem]">
               {title}
             </h1>
           </Reveal>
@@ -82,7 +84,7 @@ export default function PageHero({
         </div>
       </Container>
 
-      <div aria-hidden className="h-1 rule-gold" />
+      <div aria-hidden className="h-1.5 rule-gold" />
     </section>
   );
 }

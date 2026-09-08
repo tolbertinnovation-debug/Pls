@@ -24,7 +24,7 @@ export default function WhyPeak() {
                 aria-hidden
                 className="absolute -left-4 -top-4 hidden h-full w-full border border-gold-400/35 sm:block"
               />
-              <figure className="relative m-0 flex h-full min-h-80 flex-col overflow-hidden lg:min-h-[34rem]">
+              <figure className="relative m-0 flex h-full min-h-80 flex-col overflow-hidden rounded-[2rem] lg:min-h-[34rem]">
                 {/* Taller than the frame, so the drift never exposes an edge. */}
                 <Parallax
                   strength={0.07}
@@ -69,9 +69,9 @@ export default function WhyPeak() {
                   key={item.title}
                   as="li"
                   delay={i * 70}
-                  className="border border-white/12 bg-white/[0.04] p-6 transition-colors duration-300 hover:border-gold-400/40 lg:p-7"
+                  className="rounded-3xl border border-white/12 bg-white/[0.045] p-6 backdrop-blur-sm transition-[border-color,background-color,transform] duration-300 hover:-translate-y-1 hover:border-gold-400/40 hover:bg-white/[0.07] lg:p-7"
                 >
-                  <span className="inline-flex size-11 items-center justify-center border border-gold-400/30 bg-gold-400/10 text-gold-400">
+                  <span className="inline-flex size-11 items-center justify-center rounded-full border border-gold-400/30 bg-gold-400/10 text-gold-400">
                     <Icon name={item.icon as IconKey} className="size-5" />
                   </span>
                   <h3 className="mt-5 text-base font-bold leading-snug text-white">

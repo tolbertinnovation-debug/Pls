@@ -7,7 +7,7 @@ import { company } from "@/lib/site";
 
 export default function CTABand() {
   return (
-    <section className="grain relative overflow-hidden bg-peak-800">
+    <section className="grain logistics-grid relative overflow-hidden bg-peak-800">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_120%_at_50%_0%,rgba(228,171,8,0.20),transparent_65%)]"
@@ -15,7 +15,7 @@ export default function CTABand() {
       <div aria-hidden className="h-1 rule-gold" />
 
       <Container className="relative py-16 lg:py-24">
-        <Reveal className="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+        <Reveal className="flex flex-col items-start gap-10 rounded-[2rem] border border-white/12 bg-peak-950/35 p-7 shadow-[0_28px_90px_-45px_rgba(0,0,0,0.8)] backdrop-blur-sm sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:p-12">
           <div className="max-w-xl">
             <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-[2.5rem]">
               Ready to Move Your Cargo?
@@ -50,7 +50,7 @@ export default function CTABand() {
                   href={company.phone.href}
                   className="group flex items-center gap-3 text-white transition-colors hover:text-gold-300"
                 >
-                  <span className="flex size-10 shrink-0 items-center justify-center border border-white/25 text-gold-400 transition-colors group-hover:border-gold-400">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/25 text-gold-400 transition-colors group-hover:border-gold-400">
                     <Phone aria-hidden className="size-4" />
                   </span>
                   <span className="font-display text-lg font-bold">
@@ -63,7 +63,7 @@ export default function CTABand() {
                   href={company.email.href}
                   className="group flex items-center gap-3 text-white transition-colors hover:text-gold-300"
                 >
-                  <span className="flex size-10 shrink-0 items-center justify-center border border-white/25 text-gold-400 transition-colors group-hover:border-gold-400">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/25 text-gold-400 transition-colors group-hover:border-gold-400">
                     <Mail aria-hidden className="size-4" />
                   </span>
                   <span className="break-all text-sm font-medium">

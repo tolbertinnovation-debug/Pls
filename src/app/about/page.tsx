@@ -70,7 +70,7 @@ export default function AboutPage() {
                   height={563}
                   loading="lazy"
                   sizes="(max-width: 1023px) 92vw, 40vw"
-                  className="relative h-72 w-full object-cover sm:h-96 lg:h-[26rem]"
+                  className="relative h-72 w-full rounded-[2rem] object-cover shadow-[0_24px_64px_-38px_rgba(3,32,19,0.55)] sm:h-96 lg:h-[26rem]"
                 />
               </div>
             </Reveal>

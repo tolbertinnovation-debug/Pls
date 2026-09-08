@@ -36,9 +36,9 @@ export default function ContactPage() {
             <Reveal>
               <a
                 href={company.phone.href}
-                className="group flex h-full flex-col border border-peak-950/12 bg-white p-8 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-peak-800/30"
+                className="group flex h-full flex-col rounded-3xl border border-peak-950/10 bg-white p-8 shadow-[0_18px_48px_-38px_rgba(3,32,19,0.48)] transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-peak-800/25 hover:shadow-[0_24px_56px_-36px_rgba(3,32,19,0.5)]"
               >
-                <span className="flex size-12 items-center justify-center bg-peak-800 text-gold-400">
+                <span className="flex size-12 items-center justify-center rounded-full bg-peak-800 text-gold-400">
                   <Phone aria-hidden className="size-6" />
                 </span>
                 <h2 className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-peak-950/70">
@@ -53,9 +53,9 @@ export default function ContactPage() {
             <Reveal delay={80}>
               <a
                 href={company.email.href}
-                className="group flex h-full flex-col border border-peak-950/12 bg-white p-8 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-peak-800/30"
+                className="group flex h-full flex-col rounded-3xl border border-peak-950/10 bg-white p-8 shadow-[0_18px_48px_-38px_rgba(3,32,19,0.48)] transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-peak-800/25 hover:shadow-[0_24px_56px_-36px_rgba(3,32,19,0.5)]"
               >
-                <span className="flex size-12 items-center justify-center bg-peak-800 text-gold-400">
+                <span className="flex size-12 items-center justify-center rounded-full bg-peak-800 text-gold-400">
                   <Mail aria-hidden className="size-6" />
                 </span>
                 <h2 className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-peak-950/70">
@@ -68,8 +68,8 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal delay={160}>
-              <div className="flex h-full flex-col border border-peak-950/12 bg-white p-8">
-                <span className="flex size-12 items-center justify-center bg-peak-800 text-gold-400">
+              <div className="flex h-full flex-col rounded-3xl border border-peak-950/10 bg-white p-8 shadow-[0_18px_48px_-38px_rgba(3,32,19,0.48)]">
+                <span className="flex size-12 items-center justify-center rounded-full bg-peak-800 text-gold-400">
                   <AtSign aria-hidden className="size-6" />
                 </span>
                 <h2 className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-peak-950/70">
@@ -95,7 +95,7 @@ export default function ContactPage() {
               />
 
               <Reveal delay={100}>
-                <div className="mt-8 border border-peak-950/12 bg-stone-canvas">
+                <div className="mt-8 overflow-hidden rounded-3xl border border-peak-950/10 bg-stone-canvas">
                   <div aria-hidden className="h-1 rule-gold" />
                   <div className="flex items-start gap-4 p-7">
                     <MapPin aria-hidden className="mt-1 size-5 shrink-0 text-gold-ink" />
@@ -121,7 +121,7 @@ export default function ContactPage() {
             </div>
 
             <Reveal delay={140} className="lg:col-span-6">
-              <div className="grain relative flex h-full flex-col justify-between overflow-hidden bg-peak-950 p-8 text-white lg:p-10">
+              <div className="grain relative flex h-full flex-col justify-between overflow-hidden rounded-[2rem] bg-peak-950 p-8 text-white shadow-[0_24px_64px_-40px_rgba(3,32,19,0.7)] lg:p-10">
                 <div
                   aria-hidden
                   className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_60%_at_85%_10%,rgba(228,171,8,0.16),transparent_62%)]"

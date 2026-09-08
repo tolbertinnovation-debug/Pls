@@ -92,7 +92,7 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,border-color] duration-300 ${
         solid
-          ? "border-b border-peak-950/10 bg-white/95 shadow-[0_1px_24px_-8px_rgba(3,32,19,0.28)] backdrop-blur-md"
+          ? "border-b border-peak-950/8 bg-white/92 shadow-[0_12px_40px_-28px_rgba(3,32,19,0.5)] backdrop-blur-xl"
           : "border-b border-white/10 bg-transparent"
       }`}
     >
@@ -100,7 +100,7 @@ export default function Header() {
       <Container>
         <div
           className={`flex items-center justify-between gap-4 transition-[height] duration-300 ${
-            solid ? "h-16 lg:h-18" : "h-20 lg:h-24"
+            solid ? "h-16 lg:h-[4.5rem]" : "h-20 lg:h-24"
           }`}
         >
           <Logo
@@ -193,7 +193,7 @@ export default function Header() {
                           : "invisible -translate-y-1 opacity-0"
                       }`}
                     >
-                      <div className="overflow-hidden border border-peak-950/10 bg-white shadow-[0_28px_60px_-24px_rgba(3,32,19,0.4)]">
+                      <div className="overflow-hidden rounded-3xl border border-peak-950/10 bg-white shadow-[0_28px_70px_-24px_rgba(3,32,19,0.42)]">
                         <div className="h-0.5 rule-gold" />
                         <ul className="grid grid-cols-2 gap-px bg-peak-950/8">
                           {item.children.map((child, ci) => (
@@ -264,7 +264,9 @@ export default function Header() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            className={`-mr-2 inline-flex size-11 items-center justify-center transition-colors lg:hidden ${
+            className={`-mr-2 inline-flex size-11 items-center justify-center rounded-full border transition-colors lg:hidden ${
+              solid ? "border-peak-950/10 bg-peak-50" : "border-white/20 bg-white/10 backdrop-blur-sm"
+            } ${
               solid ? "text-peak-900" : "text-white"
             }`}
           >
@@ -281,7 +283,7 @@ export default function Header() {
       <div id="mobile-menu" hidden={!mobileOpen} className="lg:hidden">
         <div
           data-enter
-          className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-peak-950/10 bg-white"
+          className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-peak-950/10 bg-white shadow-2xl"
         >
           <Container className="py-4">
             <ul className="divide-y divide-peak-950/8">
@@ -353,7 +355,7 @@ export default function Header() {
               </ButtonLink>
               <a
                 href={company.phone.href}
-                className="flex min-h-12 items-center justify-center gap-2 border border-peak-950/15 text-[0.9375rem] font-semibold text-peak-900"
+                className="flex min-h-12 items-center justify-center gap-2 rounded-full border border-peak-950/15 text-[0.9375rem] font-semibold text-peak-900"
               >
                 <Phone aria-hidden className="size-4" />
                 {company.phone.display}

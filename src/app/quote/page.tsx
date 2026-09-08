@@ -29,7 +29,7 @@ export default function QuotePage() {
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
             {/* Form */}
             <Reveal className="lg:col-span-8">
-              <div className="border border-peak-950/12 bg-white p-6 sm:p-9 lg:p-11">
+              <div className="rounded-[2rem] border border-peak-950/10 bg-white p-6 shadow-[0_28px_70px_-42px_rgba(3,32,19,0.5)] sm:p-9 lg:p-11">
                 <h2 className="sr-only">Quote request form</h2>
                 <QuoteForm />
               </div>
@@ -38,7 +38,7 @@ export default function QuotePage() {
             {/* Aside */}
             <Reveal delay={120} className="lg:col-span-4">
               <div className="lg:sticky lg:top-28">
-                <div className="border border-peak-950/12 bg-white">
+                <div className="overflow-hidden rounded-3xl border border-peak-950/10 bg-white shadow-[0_18px_50px_-38px_rgba(3,32,19,0.5)]">
                   <div aria-hidden className="h-1 rule-gold" />
                   <div className="p-7">
                     <h2 className="font-display text-lg font-bold text-peak-950">
@@ -82,7 +82,7 @@ export default function QuotePage() {
                   </div>
                 </div>
 
-                <div className="mt-6 border border-peak-950/12 bg-peak-950 p-7 text-white">
+                <div className="mt-6 rounded-3xl border border-peak-950/12 bg-peak-950 p-7 text-white shadow-[0_18px_50px_-36px_rgba(3,32,19,0.65)]">
                   <Clock aria-hidden className="size-5 text-gold-400" />
                   <h2 className="mt-4 font-display text-base font-bold">
                     What helps us quote faster
@@ -95,7 +95,7 @@ export default function QuotePage() {
                   </ul>
                 </div>
 
-                <div className="mt-6 border border-peak-950/12 bg-white p-7">
+                <div className="mt-6 rounded-3xl border border-peak-950/10 bg-white p-7">
                   <h2 className="font-display text-base font-bold text-peak-950">
                     Services you can request
                   </h2>

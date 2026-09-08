@@ -18,7 +18,7 @@ import {
 type Status = "idle" | "submitting" | "sent" | "fallback";
 
 const inputBase =
-  "min-h-12 w-full border bg-white px-4 text-[0.9375rem] text-peak-950 " +
+  "min-h-12 w-full rounded-2xl border bg-white px-4 text-[0.9375rem] text-peak-950 shadow-[0_8px_24px_-22px_rgba(3,32,19,0.45)] " +
   "placeholder:text-peak-950/60 transition-colors focus:border-peak-700 " +
   "focus:outline-none focus:ring-2 focus:ring-gold-400/40";
 
@@ -107,7 +107,7 @@ export default function QuoteForm() {
   /* ----------------------------- success state ----------------------------- */
   if (status === "sent") {
     return (
-      <div className="border border-peak-800/25 bg-peak-50 p-8 text-center lg:p-12">
+      <div className="rounded-3xl border border-peak-800/25 bg-peak-50 p-8 text-center lg:p-12">
         <CheckCircle2 aria-hidden className="mx-auto size-12 text-peak-700" />
         <h2 className="mt-5 text-2xl font-bold text-peak-950">
           Your request has been sent
@@ -127,7 +127,7 @@ export default function QuoteForm() {
       {/* --------------------------- status summary --------------------------- */}
       <div ref={summaryRef} aria-live="polite">
         {status === "fallback" && (
-          <div className="border border-gold-500/40 bg-gold-100/60 p-6">
+          <div className="rounded-2xl border border-gold-500/40 bg-gold-100/60 p-6">
             <div className="flex gap-3">
               <AlertCircle aria-hidden className="mt-0.5 size-5 shrink-0 text-gold-700" />
               <div>
@@ -140,14 +140,14 @@ export default function QuoteForm() {
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                   <a
                     href={mailtoHref()}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 bg-peak-800 px-5 text-sm font-semibold text-white transition-colors hover:bg-peak-700"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-peak-800 px-5 text-sm font-semibold text-white transition-colors hover:bg-peak-700"
                   >
                     <Mail aria-hidden className="size-4" />
                     Email this request
                   </a>
                   <a
                     href={company.phone.href}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 border border-peak-950/25 px-5 text-sm font-semibold text-peak-900 transition-colors hover:bg-white"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-peak-950/25 px-5 text-sm font-semibold text-peak-900 transition-colors hover:bg-white"
                   >
                     <Phone aria-hidden className="size-4" />
                     {company.phone.display}
@@ -159,7 +159,7 @@ export default function QuoteForm() {
         )}
 
         {Object.keys(errors).length > 0 && (
-          <div className="flex gap-3 border border-red-300 bg-red-50 p-5">
+          <div className="flex gap-3 rounded-2xl border border-red-300 bg-red-50 p-5">
             <AlertCircle aria-hidden className="mt-0.5 size-5 shrink-0 text-red-600" />
             <p className="text-sm leading-relaxed text-red-900">
               Please check the highlighted fields below.
