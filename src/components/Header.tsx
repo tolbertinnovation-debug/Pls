@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, Menu, Phone, X } from "lucide-react";
+import { ChevronDown, MapPin, Menu, Phone, X } from "lucide-react";
 
 import Container from "@/components/Container";
 import Logo from "@/components/Logo";
@@ -111,8 +111,15 @@ export default function Header() {
           />
 
           {/* ---------------------------- desktop nav ---------------------------- */}
-          <nav aria-label="Primary" className="hidden lg:block">
-            <ul className="flex items-center gap-1">
+          <nav
+            aria-label="Primary"
+            className={`hidden rounded-full border px-2 py-1 backdrop-blur-md transition-colors lg:block ${
+              solid
+                ? "border-peak-950/8 bg-peak-50/80"
+                : "border-white/14 bg-peak-950/18"
+            }`}
+          >
+            <ul className="flex items-center gap-0.5">
               {navigation.map((item) => {
                 const active = isActive(item.href);
 
@@ -122,19 +129,19 @@ export default function Header() {
                       <Link
                         href={item.href}
                         aria-current={active ? "page" : undefined}
-                        className={`group/nav relative px-3.5 py-2 text-[0.9375rem] font-medium transition-colors ${
+                        className={`group/nav relative block rounded-full px-3.5 py-2 text-[0.9375rem] font-medium transition-colors ${
                           solid
                             ? active
-                              ? "text-peak-800"
+                              ? "bg-white text-peak-800 shadow-sm"
                               : "text-peak-950/75 hover:text-peak-800"
                             : active
-                              ? "text-gold-300"
+                              ? "bg-white/10 text-gold-300"
                               : "text-white/85 hover:text-white"
                         }`}
                       >
                         {item.label}
                         <span
-                          className={`absolute inset-x-3.5 -bottom-0.5 h-0.5 origin-left rounded-full transition-transform duration-300 ${
+                          className={`absolute inset-x-5 bottom-0.5 h-0.5 origin-left rounded-full transition-transform duration-300 ${
                             solid ? "bg-gold-500" : "bg-gold-400"
                           } ${
                             active
@@ -166,10 +173,10 @@ export default function Header() {
                       aria-expanded={desktopServicesOpen}
                       aria-controls="services-menu"
                       onClick={() => setDesktopServicesOpen((v) => !v)}
-                      className={`flex items-center gap-1.5 px-3.5 py-2 text-[0.9375rem] font-medium transition-colors ${
+                      className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[0.9375rem] font-medium transition-colors ${
                         solid
                           ? active
-                            ? "text-peak-800"
+                            ? "bg-white text-peak-800 shadow-sm"
                             : "text-peak-950/75 hover:text-peak-800"
                           : active
                             ? "text-gold-300"
@@ -241,12 +248,20 @@ export default function Header() {
 
           {/* ---------------------------- desktop CTA ---------------------------- */}
           <div className="hidden items-center gap-3 lg:flex">
+            <span
+              className={`hidden items-center gap-1.5 text-xs font-semibold xl:flex ${
+                solid ? "text-peak-950/60" : "text-white/70"
+              }`}
+            >
+              <MapPin aria-hidden className="size-3.5 text-gold-400" />
+              Monrovia
+            </span>
             <a
               href={company.phone.href}
-              className={`flex items-center gap-2 text-sm font-medium transition-colors ${
+              className={`flex items-center gap-2 rounded-full px-2 py-1.5 text-sm font-medium transition-colors ${
                 solid
-                  ? "text-peak-950/70 hover:text-peak-800"
-                  : "text-white/80 hover:text-white"
+                  ? "text-peak-950/70 hover:bg-peak-50 hover:text-peak-800"
+                  : "text-white/80 hover:bg-white/10 hover:text-white"
               }`}
             >
               <Phone aria-hidden className="size-4" />

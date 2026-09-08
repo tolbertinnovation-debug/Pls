@@ -135,6 +135,40 @@ export default function Hero() {
                 </span>
               </div>
             </Reveal>
+
+            <Reveal delay={320} className="lg:hidden">
+              <div className="mt-8 grid grid-cols-2 overflow-hidden rounded-3xl border border-white/15 bg-peak-950/55 shadow-[0_24px_55px_-28px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+                <div className="border-r border-white/10 p-4">
+                  <p className="font-display text-2xl font-extrabold text-gold-300">
+                    6
+                  </p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.13em] text-white/65">
+                    Core services
+                  </p>
+                </div>
+                <div className="p-4">
+                  <p className="font-display text-2xl font-extrabold text-gold-300">
+                    4
+                  </p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.13em] text-white/65">
+                    Transport modes
+                  </p>
+                </div>
+                <div className="col-span-2 flex items-center gap-3 border-t border-white/10 px-4 py-3.5">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-gold-400 text-peak-950">
+                    <MapPin aria-hidden className="size-4" />
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      Strategically located
+                    </p>
+                    <p className="mt-0.5 text-xs text-white/60">
+                      Opposite the Freeport of Monrovia
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
 
@@ -155,7 +189,17 @@ export default function Hero() {
                 </span>
               </div>
 
-              <div className="relative mt-7">
+              <div className="mt-5 flex items-center justify-between rounded-full border border-white/10 bg-white/[0.045] px-4 py-2.5">
+                <span className="inline-flex items-center gap-2 text-xs font-semibold text-white/75">
+                  <span className="size-2 rounded-full bg-gold-400 shadow-[0_0_0_4px_rgba(244,197,49,0.12)]" />
+                  Every stage covered
+                </span>
+                <span className="text-xs font-semibold text-gold-300">
+                  01—04
+                </span>
+              </div>
+
+              <div className="relative mt-5">
                 <span aria-hidden className="absolute bottom-7 left-5 top-7 w-px bg-gradient-to-b from-gold-400 via-white/25 to-gold-400" />
                 <ol className="space-y-1">
                 {JOURNEY.map(({ label, Icon }, index) => (
