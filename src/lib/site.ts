@@ -13,8 +13,8 @@ export const company = {
   descriptor:
     "A full-service logistics company committed to delivering efficient, reliable and client-focused solutions across Liberia.",
   phone: {
-    display: "+231 886 826 289",
-    href: "tel:+231886826289",
+    display: "+231 88 690 5096",
+    href: "tel:+231886905096",
   },
   email: {
     display: "peaklogisticsservices@gmail.com",
@@ -49,6 +49,25 @@ export const company = {
  * path and every absolute URL below follow automatically — `next.config.ts`
  * derives `basePath` from this same value.
  */
+/**
+ * Where the quote form posts.
+ *
+ * The site is a static export with no server of its own, so submissions are
+ * relayed by FormSubmit, which emails them straight to the address above.
+ * FormSubmit needs no account or API key: the first submission triggers a
+ * one-time confirmation email to that inbox, and every submission after it is
+ * delivered automatically.
+ *
+ * Set NEXT_PUBLIC_QUOTE_ENDPOINT to point at a different relay (Formspree,
+ * Web3Forms) or at a real server route if the site ever moves to a Node host.
+ * Any endpoint accepting a JSON POST works.
+ */
+export const quoteEndpoint =
+  // `||`, not `??`: the deploy workflow passes an empty string when the
+  // optional repository variable is unset, and that must fall back too.
+  process.env.NEXT_PUBLIC_QUOTE_ENDPOINT?.trim() ||
+  `https://formsubmit.co/ajax/${company.email.display}`;
+
 export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ??
   "https://tolbertinnovation-debug.github.io/Pls"
@@ -77,18 +96,36 @@ export const mission =
 export const vision =
   "To become a leading logistics provider in Liberia and beyond, recognized for transforming logistics operations through innovation, efficiency, and excellence in service delivery.";
 
+/**
+ * The profile names three values — Excellence, Integrity, Reliability — with a
+ * one-line gloss each. The reference build the client supplied adds Community
+ * and expands all four, and the client asked for that version. The expanded
+ * wording keeps each profile definition's meaning rather than replacing it.
+ */
 export const coreValues = [
   {
-    name: "Excellence",
-    description: "Delivering high-quality services consistently.",
-  },
-  {
     name: "Integrity",
-    description: "Operating with transparency and professionalism.",
+    description:
+      "We handle every shipment, and every client relationship, honestly — no hidden fees, no surprises.",
+    icon: "ShieldCheck",
   },
   {
     name: "Reliability",
-    description: "Ensuring dependable and timely service delivery.",
+    description:
+      "Deadlines in logistics aren't suggestions. We build in the buffers and backup plans that keep your cargo moving on schedule.",
+    icon: "Clock",
+  },
+  {
+    name: "Excellence",
+    description:
+      "From paperwork accuracy to warehouse handling, we hold our own standard higher than the minimum the job requires.",
+    icon: "TrendingUp",
+  },
+  {
+    name: "Community",
+    description:
+      "We're based here, and we measure our success by how well Liberian traders are working — not just our bottom line.",
+    icon: "Users",
   },
 ] as const;
 
@@ -115,6 +152,8 @@ export type Service = {
   /** Capability bullets, taken from the profile. */
   capabilities: string[];
   icon: IconName;
+  /** Card photo. 1000x563 WebP; rendered through `asset()` for the base path. */
+  image: { src: string; alt: string };
   metaTitle: string;
   metaDescription: string;
 };
@@ -133,6 +172,10 @@ export const services: Service[] = [
       "Route optimization and carrier coordination",
       "Shipment tracking and global shipping support",
     ],
+    image: {
+      src: "/images/port-crane.webp",
+      alt: "A gantry crane lifting a container from a vessel at a container terminal",
+    },
     icon: "Ship",
     metaTitle: "Freight Forwarding in Liberia",
     metaDescription:
@@ -151,6 +194,10 @@ export const services: Service[] = [
       "Duty and tax processing",
       "Regulatory compliance with local and international laws",
     ],
+    image: {
+      src: "/images/customs-clearance.webp",
+      alt: "A clearing agent handing import documents to a customs officer at a port office window",
+    },
     icon: "FileCheck",
     metaTitle: "Customs Brokerage & Clearing in Liberia",
     metaDescription:
@@ -168,6 +215,10 @@ export const services: Service[] = [
       "Preparation of shipping documents — invoices, bills of lading, certificates of origin, packing lists and more",
       "End-to-end documentation management",
     ],
+    image: {
+      src: "/images/gate-check.webp",
+      alt: "A checker with a clipboard recording a container truck at a terminal gate",
+    },
     icon: "FileText",
     metaTitle: "Shipping Documentation Services in Liberia",
     metaDescription:
@@ -186,6 +237,10 @@ export const services: Service[] = [
       "Inventory control and coordination",
       "Warehousing and distribution solutions",
     ],
+    image: {
+      src: "/images/warehouse-racking.webp",
+      alt: "Warehouse staff checking stock against racked pallets while a forklift moves a load",
+    },
     icon: "Network",
     metaTitle: "Supply Chain Management in Liberia",
     metaDescription:
@@ -204,6 +259,10 @@ export const services: Service[] = [
       "Cross-trade operations",
       "Last-mile delivery solutions",
     ],
+    image: {
+      src: "/images/container-loading.webp",
+      alt: "A forklift loading wrapped pallets into a shipping container under a canopy",
+    },
     icon: "Warehouse",
     metaTitle: "Specialized Logistics Services in Liberia",
     metaDescription:
@@ -221,6 +280,10 @@ export const services: Service[] = [
       "Reliable and flexible cargo delivery",
       "Customized transport solutions based on client needs",
     ],
+    image: {
+      src: "/images/truck-highway.webp",
+      alt: "An articulated truck carrying a shipping container on an open road",
+    },
     icon: "Truck",
     metaTitle: "Transportation Services in Liberia",
     metaDescription:
@@ -331,6 +394,196 @@ export const howWeHelp = [
     title: "Delivery",
     description:
       "The consignment is completed through to final delivery at its destination.",
+  },
+] as const;
+
+/* ------------------------------------------------------------------ */
+/* Company figures                                                     */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Performance figures, confirmed by the client on 2 Sep 2026 as accurate.
+ *
+ * These are NOT in the written company profile — they were transcribed from a
+ * reference build the client supplied and then confirmed. Keep them here, in
+ * one place, so a correction is a single edit rather than a hunt through JSX.
+ */
+/**
+ * The second line of the hero headline, cycled one after another.
+ *
+ * The first entry is the company tagline and is what renders on the server,
+ * so the tagline is what a visitor sees first, what a search engine indexes
+ * and what a screen reader is given. The rest restate figures already on this
+ * page rather than making new claims: nationwide reach is the fifteen-counties
+ * figure, on-time delivery is the 98% rate, and the responsibility line is the
+ * single point of accountability named among the strategic advantages.
+ *
+ * Each phrase wraps to the same number of lines as the tagline at every
+ * viewport width — checked at 320, 360, 390, 412, 480, 640, 768, 1024, 1280
+ * and 1440. That matters: the phrases share one grid cell so the headline
+ * cannot resize mid-cycle, which means a phrase that wrapped differently
+ * would leave a blank line under the headline while it showed.
+ */
+export const heroHeadlines = [
+  "Our Commitment.",
+  "Moved Nationwide.",
+  "Delivered On Time.",
+  "Our Responsibility.",
+] as const;
+
+export const headlineStats = [
+  { value: "500+", label: "Shipments Delivered" },
+  { value: "200+", label: "Satisfied Clients" },
+  { value: "24/7", label: "Customer Support" },
+  // Confirmed 3 Sep 2026 in preference to the "12+ Years Serving Liberia"
+  // figure that also appears in the reference build.
+  { value: "10+", label: "Years of Experience" },
+] as const;
+
+export const performanceStats = [
+  { value: "98%", label: "On-Time Delivery Rate" },
+  { value: "15", label: "Counties Reached Nationwide" },
+  { value: "3", label: "Major Ports Served" },
+  { value: "40+", label: "Team Members" },
+] as const;
+
+/**
+ * Company milestones, transcribed from the reference build the client
+ * supplied and confirmed by them as accurate.
+ *
+ * The reference shows a year against each milestone, but those year pills are
+ * small dark text in a phone recording of a screen and could not be read with
+ * confidence even upscaled. Rather than publish a guessed founding year, each
+ * entry carries an optional `year` that is simply not rendered while empty —
+ * fill these in and the dated rail appears.
+ */
+export const milestones = [
+  {
+    year: "",
+    title: "Founded at the Freeport",
+    description:
+      "Opened as a two-person customs clearance desk at the Freeport of Monrovia.",
+  },
+  {
+    year: "",
+    title: "Freight Forwarding Launched",
+    description:
+      "Added freight forwarding and opened our first bonded warehouse.",
+  },
+  {
+    year: "",
+    title: "Regional Expansion",
+    description:
+      "Opened regional offices to reach clients outside Monrovia.",
+  },
+  {
+    year: "",
+    title: "Real-Time Tracking",
+    description:
+      "Launched live cargo tracking and around-the-clock client support.",
+  },
+  {
+    year: "",
+    title: "Today",
+    description:
+      "Serving 200+ clients, with 500+ shipments handled and counting.",
+  },
+] as const;
+
+/* ------------------------------------------------------------------ */
+/* Gallery                                                             */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Operations imagery supplied by the client, plus one still from their own
+ * cargo footage. Captions describe the work, not ownership: Peak Logistics is
+ * a freight forwarder, so nothing here claims a vessel or terminal is theirs.
+ */
+export const gallery = [
+  {
+    src: "/images/quayside-handling.webp",
+    width: 1000,
+    height: 563,
+    alt: "A reach stacker lifting a container beside a berthed vessel while crew direct the move",
+    caption: "Quayside handling",
+  },
+  {
+    src: "/images/team-loading.webp",
+    width: 1000,
+    height: 563,
+    alt: "A crew in high-visibility vests loading cartons onto a box truck with a pallet jack",
+    caption: "Loading for onward delivery",
+  },
+  {
+    src: "/images/warehouse-racking.webp",
+    width: 1000,
+    height: 563,
+    alt: "Warehouse staff checking stock against racked pallets while a forklift moves a load",
+    caption: "Warehousing and inventory",
+  },
+  {
+    src: "/images/fleet-lineup.webp",
+    width: 1200,
+    height: 675,
+    alt: "Container trucks lined up at a yard with port cranes behind and a team in discussion",
+    caption: "Fleet ready for dispatch",
+  },
+  {
+    src: "/images/customs-clearance.webp",
+    width: 1000,
+    height: 563,
+    alt: "A clearing agent handing import documents to a customs officer at a port office window",
+    caption: "Customs clearance",
+  },
+  {
+    src: "/images/fleet-deck.jpg",
+    width: 719,
+    height: 466,
+    alt: "Container ship deck and crane at sunrise, seen from on board",
+    caption: "Sea freight under way",
+  },
+] as const;
+
+/* ------------------------------------------------------------------ */
+/* Container reference                                                 */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Standard ISO dry-container sizes, for clients deciding what to book.
+ *
+ * Figures are nominal EXTERNAL dimensions to the ISO standard, which is what
+ * a carrier quotes against. Internal capacity and payload vary by build and
+ * shipping line, so the section says so rather than presenting one number as
+ * definitive.
+ */
+export const containerTypes = [
+  {
+    name: "20ft Standard",
+    code: "20GP",
+    metric: "6.06 × 2.44 × 2.59 m",
+    imperial: "20' × 8' × 8'6\"",
+    capacity: "≈ 33 m³",
+    bestFor: "Dense cargo — tiles, machinery parts, tinned goods.",
+    /** Drawn to relative scale: length 1, height 1. */
+    scale: { length: 0.5, height: 0.894 },
+  },
+  {
+    name: "40ft Standard",
+    code: "40GP",
+    metric: "12.19 × 2.44 × 2.59 m",
+    imperial: "40' × 8' × 8'6\"",
+    capacity: "≈ 67 m³",
+    bestFor: "General mixed cargo and palletised consignments.",
+    scale: { length: 1, height: 0.894 },
+  },
+  {
+    name: "40ft High Cube",
+    code: "40HC",
+    metric: "12.19 × 2.44 × 2.90 m",
+    imperial: "40' × 8' × 9'6\"",
+    capacity: "≈ 76 m³",
+    bestFor: "Light, bulky cargo — furniture, packaging, textiles.",
+    scale: { length: 1, height: 1 },
   },
 ] as const;
 

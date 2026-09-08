@@ -4,7 +4,7 @@ import { useRef, useState, type FormEvent } from "react";
 import { AlertCircle, CheckCircle2, Loader2, Mail, Phone, Send } from "lucide-react";
 
 import { Button } from "@/components/Button";
-import { company } from "@/lib/site";
+import { company, quoteEndpoint } from "@/lib/site";
 import {
   emptyQuote,
   formatQuoteText,
@@ -15,10 +15,10 @@ import {
   type QuoteRequest,
 } from "@/lib/quote";
 
-type Status = "idle" | "submitting" | "sent" | "manual" | "error";
+type Status = "idle" | "submitting" | "sent" | "fallback";
 
 const inputBase =
-  "min-h-12 w-full border bg-white px-4 text-[0.9375rem] text-peak-950 " +
+  "min-h-12 w-full rounded-2xl border bg-white px-4 text-[0.9375rem] text-peak-950 shadow-[0_8px_24px_-22px_rgba(3,32,19,0.45)] " +
   "placeholder:text-peak-950/60 transition-colors focus:border-peak-700 " +
   "focus:outline-none focus:ring-2 focus:ring-gold-400/40";
 
@@ -30,7 +30,9 @@ export default function QuoteForm() {
   const [values, setValues] = useState<QuoteRequest>(emptyQuote);
   const [errors, setErrors] = useState<QuoteErrors>({});
   const [status, setStatus] = useState<Status>("idle");
-  const [serverMessage, setServerMessage] = useState("");
+  const [fallbackReason, setFallbackReason] = useState("");
+  /** Honeypot: a real person never sees this field, so anything in it is a bot. */
+  const [botField, setBotField] = useState("");
   const summaryRef = useRef<HTMLDivElement>(null);
 
   const update = (field: QuoteField, value: string) => {
@@ -58,22 +60,18 @@ export default function QuoteForm() {
       return;
     }
 
-    // The site is a static export, so it has no server of its own. When a form
-    // endpoint is configured the browser posts straight to it; when none is,
-    // the visitor is handed a prefilled email rather than told it was sent.
-    const endpoint = process.env.NEXT_PUBLIC_QUOTE_ENDPOINT;
-
-    if (!endpoint) {
-      setStatus("manual");
-      summaryRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+    // Silently accept and drop bot submissions, so a script gets no signal
+    // about what tripped the filter.
+    if (botField) {
+      setStatus("sent");
       return;
     }
 
     setStatus("submitting");
-    setServerMessage("");
+    setFallbackReason("");
 
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch(quoteEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -82,19 +80,25 @@ export default function QuoteForm() {
         body: JSON.stringify({
           ...values,
           _subject: `Quote request — ${values.service} — ${values.fullName}`,
+          _template: "table",
+          _captcha: "false",
+          _honey: botField,
         }),
       });
 
       if (response.ok) {
         setStatus("sent");
       } else {
-        setServerMessage(
-          "We could not send your request just now. Please email or call us instead.",
+        setFallbackReason(
+          "We could not deliver your request just now. Your answers are kept below — send them directly and nothing is lost.",
         );
-        setStatus("error");
+        setStatus("fallback");
       }
     } catch {
-      setStatus("manual");
+      setFallbackReason(
+        "Your request could not be sent — the connection dropped or the network is blocking it. Your answers are kept below.",
+      );
+      setStatus("fallback");
     }
 
     summaryRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
@@ -103,7 +107,7 @@ export default function QuoteForm() {
   /* ----------------------------- success state ----------------------------- */
   if (status === "sent") {
     return (
-      <div className="border border-peak-800/25 bg-peak-50 p-8 text-center lg:p-12">
+      <div className="rounded-3xl border border-peak-800/25 bg-peak-50 p-8 text-center lg:p-12">
         <CheckCircle2 aria-hidden className="mx-auto size-12 text-peak-700" />
         <h2 className="mt-5 text-2xl font-bold text-peak-950">
           Your request has been sent
@@ -119,11 +123,11 @@ export default function QuoteForm() {
   const busy = status === "submitting";
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-7">
+    <form onSubmit={onSubmit} noValidate className="relative space-y-7">
       {/* --------------------------- status summary --------------------------- */}
       <div ref={summaryRef} aria-live="polite">
-        {status === "manual" && (
-          <div className="border border-gold-500/40 bg-gold-100/60 p-6">
+        {status === "fallback" && (
+          <div className="rounded-2xl border border-gold-500/40 bg-gold-100/60 p-6">
             <div className="flex gap-3">
               <AlertCircle aria-hidden className="mt-0.5 size-5 shrink-0 text-gold-700" />
               <div>
@@ -131,21 +135,19 @@ export default function QuoteForm() {
                   Send this request directly
                 </h2>
                 <p className="mt-2 text-sm leading-relaxed text-peak-950/70">
-                  Online submission is not connected on this site yet, so your
-                  details were not transmitted. Your answers are preserved
-                  below — use either option and they will travel with you.
+                  {fallbackReason}
                 </p>
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                   <a
                     href={mailtoHref()}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 bg-peak-800 px-5 text-sm font-semibold text-white transition-colors hover:bg-peak-700"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-peak-800 px-5 text-sm font-semibold text-white transition-colors hover:bg-peak-700"
                   >
                     <Mail aria-hidden className="size-4" />
                     Email this request
                   </a>
                   <a
                     href={company.phone.href}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 border border-peak-950/25 px-5 text-sm font-semibold text-peak-900 transition-colors hover:bg-white"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-peak-950/25 px-5 text-sm font-semibold text-peak-900 transition-colors hover:bg-white"
                   >
                     <Phone aria-hidden className="size-4" />
                     {company.phone.display}
@@ -156,15 +158,8 @@ export default function QuoteForm() {
           </div>
         )}
 
-        {status === "error" && (
-          <div className="flex gap-3 border border-red-300 bg-red-50 p-5">
-            <AlertCircle aria-hidden className="mt-0.5 size-5 shrink-0 text-red-600" />
-            <p className="text-sm leading-relaxed text-red-900">{serverMessage}</p>
-          </div>
-        )}
-
         {Object.keys(errors).length > 0 && (
-          <div className="flex gap-3 border border-red-300 bg-red-50 p-5">
+          <div className="flex gap-3 rounded-2xl border border-red-300 bg-red-50 p-5">
             <AlertCircle aria-hidden className="mt-0.5 size-5 shrink-0 text-red-600" />
             <p className="text-sm leading-relaxed text-red-900">
               Please check the highlighted fields below.
@@ -314,6 +309,20 @@ export default function QuoteForm() {
           </div>
         </div>
       </fieldset>
+
+      {/* Honeypot. Off-screen rather than display:none, which some bots skip. */}
+      <div aria-hidden className="absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden">
+        <label htmlFor="company-website">Leave this field empty</label>
+        <input
+          id="company-website"
+          name="company-website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={botField}
+          onChange={(e) => setBotField(e.target.value)}
+        />
+      </div>
 
       <div className="flex flex-col gap-4 border-t border-peak-950/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs leading-relaxed text-peak-950/70">

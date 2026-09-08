@@ -1,10 +1,12 @@
+import Image from "next/image";
 import { ExternalLink, MapPin, Mail, Phone } from "lucide-react";
 
 import Container from "@/components/Container";
+import Parallax from "@/components/Parallax";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { LogoImage } from "@/components/Logo";
-import { company } from "@/lib/site";
+import { asset, company } from "@/lib/site";
 
 /**
  * Opens Google Maps searching for the published address. No coordinates are
@@ -33,11 +35,40 @@ export default function LiberiaFocus() {
             />
 
             <Reveal delay={100}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/55">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/75">
                 Our team operates from Bushrod Island in Monrovia, directly
                 across from the Freeport of Monrovia — the point through which
                 most of the country&rsquo;s import and export cargo passes.
               </p>
+            </Reveal>
+
+            <Reveal delay={140} variant="clip">
+              <figure className="relative m-0 mt-10 h-64 overflow-hidden border border-white/15 sm:h-80">
+                <Parallax
+                  strength={0.07}
+                  className="absolute inset-x-0 -inset-y-[9%]"
+                >
+                  <Image
+                    src={asset("/images/monrovia-freeport.webp")}
+                    alt="Aerial view over Bushrod Island and the Freeport of Monrovia, with container terminal, cranes and the city beyond"
+                    width={1500}
+                    height={844}
+                    loading="lazy"
+                    sizes="(max-width: 1023px) 92vw, 46vw"
+                    className="h-full w-full object-cover"
+                  />
+                </Parallax>
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-peak-950/80 via-transparent to-transparent"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 p-5">
+                  <span className="block h-px w-8 rule-gold" />
+                  <span className="mt-2.5 block text-sm font-semibold text-white">
+                    The Freeport of Monrovia and Bushrod Island
+                  </span>
+                </figcaption>
+              </figure>
             </Reveal>
           </div>
 

@@ -1,5 +1,6 @@
 import {
   ArrowLeftRight,
+  Clock,
   Building2,
   FileCheck,
   FileText,
@@ -9,10 +10,13 @@ import {
   Network,
   Plane,
   Ship,
+  ShieldCheck,
   Sprout,
   Stamp,
   TrainFront,
+  TrendingUp,
   Truck,
+  Users,
   Warehouse,
   Workflow,
   type LucideIcon,
@@ -24,6 +28,7 @@ import {
  */
 const ICONS = {
   ArrowLeftRight,
+  Clock,
   Building2,
   FileCheck,
   FileText,
@@ -33,10 +38,13 @@ const ICONS = {
   Network,
   Plane,
   Ship,
+  ShieldCheck,
   Sprout,
   Stamp,
   TrainFront,
+  TrendingUp,
   Truck,
+  Users,
   Warehouse,
   Workflow,
 } satisfies Record<string, LucideIcon>;

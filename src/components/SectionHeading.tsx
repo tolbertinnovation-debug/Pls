@@ -32,7 +32,7 @@ export default function SectionHeading({
         <div
           className={`flex items-center gap-3 ${centered ? "justify-center" : ""}`}
         >
-          <span className="h-px w-8 rule-gold" />
+          <span className="h-1.5 w-1.5 rounded-full bg-gold-400 shadow-[0_0_0_5px_rgba(244,197,49,0.12)]" />
           <span
             className={`text-xs font-semibold uppercase tracking-[0.2em] ${
               tone === "light" ? "text-gold-400" : "text-gold-ink"
@@ -44,7 +44,7 @@ export default function SectionHeading({
       )}
 
       <Tag
-        className={`mt-4 text-3xl font-extrabold leading-[1.08] sm:text-4xl lg:text-[2.75rem] ${
+        className={`mt-5 text-3xl font-extrabold leading-[1.04] sm:text-4xl lg:text-[3rem] ${
           tone === "light" ? "text-white" : "text-peak-950"
         }`}
       >

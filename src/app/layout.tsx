@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
 
 import Header from "@/components/Header";
+import RouteTransition from "@/components/RouteTransition";
 import Footer from "@/components/Footer";
 import { absolute, asset, company, siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -109,7 +110,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
-        <main id="main">{children}</main>
+        <main id="main">
+          <RouteTransition>{children}</RouteTransition>
+        </main>
         <Footer />
       </body>
     </html>

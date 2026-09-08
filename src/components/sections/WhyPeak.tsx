@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import Container from "@/components/Container";
 import Icon, { type IconKey } from "@/components/Icon";
+import Parallax from "@/components/Parallax";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { asset, strategicAdvantages } from "@/lib/site";
@@ -17,27 +18,33 @@ export default function WhyPeak() {
       <Container className="relative">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           {/* Image column */}
-          <Reveal className="lg:col-span-5">
-            <div className="relative">
+          <Reveal variant="clip" className="lg:col-span-5">
+            <div className="relative h-full">
               <div
                 aria-hidden
                 className="absolute -left-4 -top-4 hidden h-full w-full border border-gold-400/35 sm:block"
               />
-              <figure className="relative m-0 overflow-hidden">
-                <Image
-                  src={asset("/images/containers.jpg")}
-                  alt="Stacked shipping containers awaiting onward transport"
-                  width={562}
-                  height={660}
-                  loading="lazy"
-                  sizes="(max-width: 1023px) 90vw, 38vw"
-                  className="h-80 w-full object-cover sm:h-[26rem] lg:h-[34rem]"
-                />
+              <figure className="relative m-0 flex h-full min-h-80 flex-col overflow-hidden rounded-[2rem] lg:min-h-[34rem]">
+                {/* Taller than the frame, so the drift never exposes an edge. */}
+                <Parallax
+                  strength={0.07}
+                  className="absolute inset-x-0 -inset-y-[9%]"
+                >
+                  <Image
+                    src={asset("/images/fleet-lineup.webp")}
+                    alt="Container trucks lined up at a yard with port cranes behind and a team in discussion"
+                    width={1200}
+                    height={675}
+                    loading="lazy"
+                    sizes="(max-width: 1023px) 90vw, 38vw"
+                    className="h-full w-full object-cover"
+                  />
+                </Parallax>
                 <div
                   aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-peak-950 via-peak-950/30 to-transparent"
+                  className="absolute inset-0 bg-gradient-to-t from-peak-950 via-peak-950/25 to-transparent"
                 />
-                <figcaption className="absolute inset-x-0 bottom-0 border-t border-white/15 bg-peak-950/55 p-6 backdrop-blur-sm lg:p-7">
+                <figcaption className="relative mt-auto border-t border-white/15 bg-peak-950/60 p-6 backdrop-blur-sm lg:p-7">
                   <p className="text-sm leading-relaxed text-white/85">
                     Our approach allows clients to focus on their core business
                     while we manage the logistics complexities.
@@ -56,21 +63,21 @@ export default function WhyPeak() {
               lead="As a one-stop logistics provider, Peak Logistics Services brings together the local knowledge, regulatory expertise and multi-modal reach that complex shipments require."
             />
 
-            <ul className="mt-12 grid gap-px bg-white/10 sm:grid-cols-2">
+            <ul className="mt-12 grid gap-4 sm:grid-cols-2">
               {strategicAdvantages.map((item, i) => (
                 <Reveal
                   key={item.title}
                   as="li"
                   delay={i * 70}
-                  className="bg-peak-950 p-6 lg:p-7"
+                  className="rounded-3xl border border-white/12 bg-white/[0.045] p-6 backdrop-blur-sm transition-[border-color,background-color,transform] duration-300 hover:-translate-y-1 hover:border-gold-400/40 hover:bg-white/[0.07] lg:p-7"
                 >
-                  <span className="inline-flex size-11 items-center justify-center border border-gold-400/30 bg-gold-400/10 text-gold-400">
+                  <span className="inline-flex size-11 items-center justify-center rounded-full border border-gold-400/30 bg-gold-400/10 text-gold-400">
                     <Icon name={item.icon as IconKey} className="size-5" />
                   </span>
                   <h3 className="mt-5 text-base font-bold leading-snug text-white">
                     {item.title}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-white/55">
+                  <p className="mt-2.5 text-sm leading-relaxed text-white/75">
                     {item.description}
                   </p>
                 </Reveal>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
@@ -11,6 +12,7 @@ import Reveal from "@/components/Reveal";
 import { ButtonLink } from "@/components/Button";
 import {
   absolute,
+  asset,
   company,
   howWeHelp,
   serviceBySlug,
@@ -79,12 +81,32 @@ export default async function ServiceDetailPage({
         lead={service.intro}
       />
 
+      {/* Each service leads with its own photograph, so the six detail pages
+          are visually distinct rather than six identical text layouts. */}
+      <section className="bg-white pt-10 lg:pt-14">
+        <Container>
+          <Reveal>
+            <figure className="relative m-0 overflow-hidden rounded-[2rem] border border-peak-950/10 shadow-[0_26px_70px_-42px_rgba(3,32,19,0.55)]">
+              <Image
+                src={asset(service.image.src)}
+                alt={service.image.alt}
+                width={1000}
+                height={563}
+                priority
+                sizes="(max-width: 1279px) 92vw, 1200px"
+                className="h-56 w-full object-cover sm:h-72 lg:h-96"
+              />
+            </figure>
+          </Reveal>
+        </Container>
+      </section>
+
       <section className="bg-white py-16 lg:py-24">
         <Container>
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <Reveal className="flex items-center gap-4">
-                <span className="flex size-14 items-center justify-center bg-peak-800 text-gold-400">
+                <span className="flex size-14 items-center justify-center rounded-2xl bg-peak-800 text-gold-400">
                   <Icon name={service.icon as IconKey} className="size-7" />
                 </span>
                 <h2 className="text-2xl font-bold text-peak-950">
@@ -124,7 +146,7 @@ export default async function ServiceDetailPage({
                       key={stage.step}
                       className="flex gap-5 border-l border-peak-950/12 pb-8 pl-6 last:pb-0"
                     >
-                      <div className="-ml-[2.05rem] flex size-9 shrink-0 items-center justify-center border border-peak-800/25 bg-white font-display text-xs font-bold tabular-nums text-peak-800">
+                      <div className="-ml-[2.05rem] flex size-9 shrink-0 items-center justify-center rounded-full border border-peak-800/25 bg-white font-display text-xs font-bold tabular-nums text-peak-800">
                         {stage.step}
                       </div>
                       <div className="-mt-0.5">
@@ -142,12 +164,12 @@ export default async function ServiceDetailPage({
             {/* Sidebar */}
             <Reveal delay={120} className="lg:col-span-5">
               <div className="lg:sticky lg:top-28">
-                <div className="border border-peak-950/12 bg-peak-950 p-8 text-white">
+                <div className="rounded-3xl border border-peak-950/12 bg-peak-950 p-8 text-white shadow-[0_20px_56px_-36px_rgba(3,32,19,0.7)]">
                   <div aria-hidden className="h-px w-10 rule-gold" />
                   <h2 className="mt-5 font-display text-xl font-bold">
                     Need {service.title.toLowerCase()}?
                   </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-white/65">
+                  <p className="mt-3 text-sm leading-relaxed text-white/75">
                     Send us your shipment details and we will come back with a
                     solution built around them.
                   </p>
@@ -161,14 +183,14 @@ export default async function ServiceDetailPage({
                     </ButtonLink>
                     <a
                       href={company.phone.href}
-                      className="flex min-h-11 items-center justify-center border border-white/25 text-sm font-semibold text-white transition-colors hover:border-gold-400 hover:text-gold-300"
+                      className="flex min-h-11 items-center justify-center rounded-full border border-white/25 text-sm font-semibold text-white transition-colors hover:border-gold-400 hover:text-gold-300"
                     >
                       {company.phone.display}
                     </a>
                   </div>
                 </div>
 
-                <nav aria-label="Other services" className="mt-6 border border-peak-950/12 bg-white">
+                <nav aria-label="Other services" className="mt-6 overflow-hidden rounded-3xl border border-peak-950/10 bg-white">
                   <h2 className="border-b border-peak-950/10 px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-peak-950/70">
                     Other services
                   </h2>

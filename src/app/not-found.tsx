@@ -20,7 +20,7 @@ export default function NotFound() {
           <h1 className="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">
             This page has gone off route
           </h1>
-          <p className="mt-5 text-lg leading-relaxed text-white/65">
+          <p className="mt-5 text-lg leading-relaxed text-white/75">
             The page you were looking for does not exist. Head back to the
             homepage, or pick up from one of our services below.
           </p>

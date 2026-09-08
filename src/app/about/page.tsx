@@ -64,13 +64,13 @@ export default function AboutPage() {
                   className="absolute -bottom-4 -right-4 hidden h-full w-full border border-gold-500/50 sm:block"
                 />
                 <Image
-                  src={asset("/images/port-monrovia.jpg")}
-                  alt="Cargo being handled at a container terminal — ship, gantry crane and haulage truck"
-                  width={1148}
-                  height={942}
+                  src={asset("/images/team-loading.webp")}
+                  alt="A crew in high-visibility vests loading cartons onto a box truck with a pallet jack"
+                  width={1000}
+                  height={563}
                   loading="lazy"
                   sizes="(max-width: 1023px) 92vw, 40vw"
-                  className="relative h-72 w-full object-cover sm:h-96 lg:h-[26rem]"
+                  className="relative h-72 w-full rounded-[2rem] object-cover shadow-[0_24px_64px_-38px_rgba(3,32,19,0.55)] sm:h-96 lg:h-[26rem]"
                 />
               </div>
             </Reveal>
@@ -95,7 +95,7 @@ export default function AboutPage() {
             title="Expanding our services, entering new markets"
           />
           <Reveal delay={100}>
-            <p className="mx-auto mt-7 max-w-3xl text-center text-lg leading-relaxed text-white/65">
+            <p className="mx-auto mt-7 max-w-3xl text-center text-lg leading-relaxed text-white/75">
               We are focused on expanding our service offerings and entering new
               markets. Our goal is to continuously innovate and deliver logistics
               solutions that improve efficiency, reduce costs and enhance client
