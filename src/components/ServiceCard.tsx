@@ -1,11 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 
 import Icon, { type IconKey } from "@/components/Icon";
 import { asset, type Service } from "@/lib/site";
 
-export default function ServiceCard({ service }: { service: Service }) {
+export default function ServiceCard({
+  service,
+  featured = false,
+}: {
+  service: Service;
+  featured?: boolean;
+}) {
   return (
     <Link
       href={`/services/${service.slug}`}
@@ -25,7 +31,7 @@ export default function ServiceCard({ service }: { service: Service }) {
           height={563}
           loading="lazy"
           sizes="(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 31vw"
-          className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+          className={`${featured ? "h-60 lg:h-72" : "h-52"} w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]`}
         />
         <div
           aria-hidden
@@ -40,14 +46,38 @@ export default function ServiceCard({ service }: { service: Service }) {
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col p-7">
-        <span className="mb-4 w-fit rounded-full bg-peak-50 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-peak-700">
-          Logistics service
-        </span>
+      <div className="flex flex-1 flex-col p-6 lg:p-7">
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <span className="w-fit rounded-full bg-peak-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-peak-700">
+            Logistics service
+          </span>
+          {!featured && (
+            <span className="text-xs font-semibold text-peak-950/55">
+              {service.capabilities.length} capabilities
+            </span>
+          )}
+        </div>
         <h3 className="text-xl font-bold text-peak-950">{service.title}</h3>
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-peak-950/70">
+        <p className="mt-3 text-base leading-relaxed text-peak-950/70">
           {service.summary}
         </p>
+
+        {featured && (
+          <ul className="mt-6 grid gap-3 border-t border-peak-950/10 pt-5 sm:grid-cols-2">
+            {service.capabilities.slice(0, 2).map((capability) => (
+              <li
+                key={capability}
+                className="flex items-start gap-2.5 text-sm leading-relaxed text-peak-950/75"
+              >
+                <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-peak-50 text-peak-700">
+                  <Check aria-hidden className="size-3" strokeWidth={3} />
+                </span>
+                {capability}
+              </li>
+            ))}
+          </ul>
+        )}
+
         <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-peak-800">
           Learn more
           <ArrowUpRight

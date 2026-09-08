@@ -29,10 +29,19 @@ export default function ServicesGrid({
           )}
         </div>
 
-        <ul className="relative mt-12 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
+        <ul className="relative mt-12 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-12">
           {services.map((service, i) => (
-            <Reveal key={service.slug} as="li" delay={i * 60} className="flex">
-              <ServiceCard service={service} />
+            <Reveal
+              key={service.slug}
+              as="li"
+              delay={i * 60}
+              className={`flex ${
+                i < 2
+                  ? "lg:col-span-6"
+                  : "lg:col-span-6 xl:col-span-3"
+              }`}
+            >
+              <ServiceCard service={service} featured={i < 2} />
             </Reveal>
           ))}
         </ul>

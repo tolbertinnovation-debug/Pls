@@ -9,6 +9,8 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import ContainerGuide from "@/components/sections/ContainerGuide";
 import HowWeHelp from "@/components/sections/HowWeHelp";
+import ServiceFinder from "@/components/sections/ServiceFinder";
+import FaqSection from "@/components/sections/FaqSection";
 import { absolute, services } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -50,6 +52,8 @@ export default function ServicesPage() {
           </ul>
         </Container>
       </section>
+
+      <ServiceFinder />
 
       {/* Detailed sections, alternating background */}
       {services.map((service, index) => {
@@ -122,6 +126,7 @@ export default function ServicesPage() {
 
       <ContainerGuide />
       <HowWeHelp />
+      <FaqSection />
       <CTABand />
     </>
   );
